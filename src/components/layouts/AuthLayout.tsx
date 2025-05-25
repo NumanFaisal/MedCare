@@ -45,14 +45,14 @@ function AuthLayout({
                         <p className="text-gray-600">
                             Don not have an account?{' '}
                             <Link href={`/signup/${accountType}`} className="text-primary hover:underline font-medium">
-                            Sign up
+                                Sign up
                             </Link>
                         </p>
                         ) : (
                         <p className="text-gray-600">
                             Already have an account?{' '}
                             <Link href={`/signin/${accountType}`} className="text-primary hover:underline font-medium">
-                            Sign in
+                                Sign in
                             </Link>
                         </p>
                         )}
@@ -60,9 +60,9 @@ function AuthLayout({
 
                     <div className="mt-4 text-center">
                         <div className="flex justify-center space-x-4 text-xs text-gray-500">
-                            <Link href="/signin/user" className={`hover:text-primary ${accountType === 'user' ? 'text-primary' : ''}`}>Patient Portal</Link>
-                            <Link href="/signin/doctor" className={`hover:text-primary ${accountType === 'doctor' ? 'text-primary' : ''}`}>Doctor Portal</Link>
-                            <Link href="/signin/medical" className={`hover:text-primary ${accountType === 'medical' ? 'text-primary' : ''}`}>Medical Shop Portal</Link>
+                            <Link href="/sign-in/pateint" className={`hover:text-primary ${accountType === 'user' ? 'text-primary' : ''}`}>Patient Portal</Link>
+                            <Link href="/sign-in/doctor" className={`hover:text-primary ${accountType === 'doctor' ? 'text-primary' : ''}`}>Doctor Portal</Link>
+                            <Link href="/sign-in/medical" className={`hover:text-primary ${accountType === 'medical' ? 'text-primary' : ''}`}>Medical Shop Portal</Link>
                         </div>
                     </div>
                 </div>

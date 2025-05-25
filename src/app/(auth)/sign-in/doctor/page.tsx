@@ -9,7 +9,7 @@ import { useRouter } from "next/navigation";
 import { toast } from "sonner"; // import toast from sonner
 
 
-function UserSignin() {
+function DoctorSignin() {
     const router = useRouter();
 
     const handleSubmit = (e: React.FormEvent<HTMLFormElement>) => {
@@ -17,14 +17,14 @@ function UserSignin() {
         toast("Login successful!", {
             description: "Welcome back to MedCare",
         });
-        router.push('/dashboard/user');
+        router.push('/dashboard/doctor');
     };
 
     return (
         <AuthLayout 
-            title="Patient Sign In"
-            subtitle="Access your personal healthcare dashboard"
-            accountType="user"
+            title="Doctor Sign In"
+            subtitle="Access your medical dashboard"
+            accountType="doctor"
             isSignIn
         >
             <form onSubmit={handleSubmit} className="space-y-4">
@@ -35,7 +35,7 @@ function UserSignin() {
                         type="email" 
                         placeholder="john.doe@example.com" 
                         required
-                        className="border-none shadow-2xl "
+                        className="border-none shadow-xl "
                     />
                 </div>
 
@@ -51,7 +51,7 @@ function UserSignin() {
                         type="password"
                         placeholder="******"
                         required
-                        className="border-none shadow-2xl "
+                        className="border-none shadow-xl "
                     />
                 </div>
 
@@ -71,4 +71,4 @@ function UserSignin() {
     )
 }
 
-export default UserSignin;
+export default DoctorSignin;

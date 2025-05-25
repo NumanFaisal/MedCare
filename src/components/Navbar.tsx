@@ -36,21 +36,21 @@ function Navbar() {
                                 <div className="py-2">
                                     <div className="px-4 py-2 text-sm font-medium text-gray-800 border-b">Choose Portal</div>
                                         <Link 
-                                            href="/sign-in" 
+                                            href="/sign-in/pateint" 
                                             className="block px-4 py-2 text-sm text-gray-700 hover:bg-[#E5DEFF]"
                                             onClick={() => setIsUserDropdownOpen(false)}
                                         >
                                             Patient Portal
                                         </Link>
                                         <Link 
-                                            href="/signin/doctor" 
+                                            href="/sign-in/doctor" 
                                             className="block px-4 py-2 text-sm text-gray-700 hover:bg-[#E5DEFF]"
                                             onClick={() => setIsUserDropdownOpen(false)}
                                         >
                                             Doctor Portal
                                         </Link>
                                         <Link 
-                                            href="/signin/medical" 
+                                            href="/sign-in/medical" 
                                             className="block px-4 py-2 text-sm text-gray-700 hover:bg-[#E5DEFF]"
                                             onClick={() => setIsUserDropdownOpen(false)}
                                         >
