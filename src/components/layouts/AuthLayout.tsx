@@ -18,7 +18,7 @@ function AuthLayout({
     isSignIn = true,
 }: AuthLayoutProps) {
     return (
-        <div className="min-h-screen flex flex-col bg-gradient-to-br from-primary-light to-accent">
+        <div className="min-h-screen flex flex-col bg-linear-to-br from-[#E5DEFF] to-[#FDE1D3]">
             <div className="absolute top-4 left-4">
                 <Link href="/" className="flex items-center space-x-2">
                     <div className="w-8 h-8 bg-primary rounded-lg flex items-center justify-center">

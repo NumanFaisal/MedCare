@@ -36,7 +36,7 @@ function Navbar() {
                                 <div className="py-2">
                                     <div className="px-4 py-2 text-sm font-medium text-gray-800 border-b">Choose Portal</div>
                                         <Link 
-                                            href="/signin/user" 
+                                            href="/sign-in" 
                                             className="block px-4 py-2 text-sm text-gray-700 hover:bg-[#E5DEFF]"
                                             onClick={() => setIsUserDropdownOpen(false)}
                                         >
