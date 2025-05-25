@@ -1,5 +1,5 @@
 import { Button } from "./ui/button";
-
+import Link from 'next/link'
 
 function Hero() {
     return(
@@ -16,7 +16,7 @@ function Hero() {
                     </p>
                     <div className="flex flex-col sm:flex-row space-y-3 sm:space-y-0 sm:space-x-4">
                         <Button  className=" text-white hover:bg-primary hover:text-white text-lg py-6 px-10 rounded-lg button-hover-effect mr-5">
-                        Join as Patient
+                            <Link href="/sign-in/patient">Join as patient </Link>
                         </Button>
                         <Button variant="outline" className="border-primary text-primary bg-white hover:bg-primary hover:text-white text-lg py-6 px-8 rounded-lg button-hover-effect">
                             For Healthcare Providers

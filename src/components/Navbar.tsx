@@ -32,11 +32,11 @@ function Navbar() {
                         </Button>
 
                         {isUserDropdownOpen && (
-                            <div className="absolute right-0 mt-2 w-48 bg-white rounded-md overflow-hidden shadow-lg z-20 border">
+                            <div className="absolute right-0 mt-2 w-50 bg-white rounded-md overflow-hidden shadow-xl z-20 border-none">
                                 <div className="py-2">
-                                    <div className="px-4 py-2 text-sm font-medium text-gray-800 border-b">Choose Portal</div>
+                                    <div className="px-4 py-2 text-sm font-medium text-gray-800 border-b-1 ">Choose Portal</div>
                                         <Link 
-                                            href="/sign-in/pateint" 
+                                            href="/sign-in/patient" 
                                             className="block px-4 py-2 text-sm text-gray-700 hover:bg-[#E5DEFF]"
                                             onClick={() => setIsUserDropdownOpen(false)}
                                         >
@@ -60,7 +60,7 @@ function Navbar() {
                                     <div className="border-t py-1">
                                         <div className="px-4 py-2 text-xs text-gray-500">dont have an account?</div>
                                             <Link 
-                                                href="/signup/user" 
+                                                href="/sign-up" 
                                                 className="block px-4 py-2 text-sm text-primary hover:bg-[#E5DEFF]"
                                                 onClick={() => setIsUserDropdownOpen(false)}
                                             >

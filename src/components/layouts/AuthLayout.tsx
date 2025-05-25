@@ -60,7 +60,7 @@ function AuthLayout({
 
                     <div className="mt-4 text-center">
                         <div className="flex justify-center space-x-4 text-xs text-gray-500">
-                            <Link href="/sign-in/pateint" className={`hover:text-primary ${accountType === 'user' ? 'text-primary' : ''}`}>Patient Portal</Link>
+                            <Link href="/sign-in/patient" className={`hover:text-primary ${accountType === 'user' ? 'text-primary' : ''}`}>Patient Portal</Link>
                             <Link href="/sign-in/doctor" className={`hover:text-primary ${accountType === 'doctor' ? 'text-primary' : ''}`}>Doctor Portal</Link>
                             <Link href="/sign-in/medical" className={`hover:text-primary ${accountType === 'medical' ? 'text-primary' : ''}`}>Medical Shop Portal</Link>
                         </div>

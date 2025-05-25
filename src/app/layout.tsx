@@ -1,20 +1,25 @@
-
+"use client";
 import Navbar from "@/components/Navbar";
 import "./globals.css";
+import { usePathname } from "next/navigation";
 
-
-
-export default function RootLayout({
+function RootLayout({
   children,
 }: Readonly<{
   children: React.ReactNode;
 }>) {
+  const pathname = usePathname();
+  const hideNavbar = pathname.startsWith("/sign-in") || pathname.startsWith("/register");
+
   return (
     <html lang="en">
       <body>
-        <Navbar />
+        {!hideNavbar && <Navbar />}
         {children}
       </body>
     </html>
   );
 }
+
+
+export default RootLayout;
