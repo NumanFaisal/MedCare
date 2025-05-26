@@ -110,8 +110,8 @@ function DoctorSearch() {
                             className="pl-9"
                         />
                     </div>
-                        <Button className="bg-primary hover:bg-[#7E69AB]">
-                        Search Doctors
+                        <Button className="bg-primary hover:bg-[#7E69AB] text-white">
+                            Search Doctors
                         </Button>
                 </div>
             </div>

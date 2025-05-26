@@ -24,7 +24,7 @@ function UserSignin() {
         <AuthLayout 
             title="Patient Sign In"
             subtitle="Access your personal healthcare dashboard"
-            accountType="user"
+            accountType="patient"
             isSignIn
         >
             <form onSubmit={handleSubmit} className="space-y-4">

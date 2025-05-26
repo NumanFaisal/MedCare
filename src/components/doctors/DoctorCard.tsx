@@ -90,6 +90,7 @@ function DoctorCard({ doctor, onBookAppointment, onViewProfile }: DoctorCardProp
                             <Button
                                 size="sm"
                                 onClick={handleBookAppointment}
+                                className='text-white'
                             >
                                 Book Appointment
                             </Button>

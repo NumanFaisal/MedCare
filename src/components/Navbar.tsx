@@ -94,13 +94,13 @@ function Navbar() {
                             <div className="font-medium text-gray-800 mb-2">Sign In As:</div>
                             <div className="grid grid-cols-1 gap-2">
                                 <Button variant="outline" asChild>
-                                    <Link href="/signin/user" className="justify-center">
+                                    <Link href="/sign-in/patient" className="justify-center">
                                         <User className="mr-2 h-4 w-4" />
                                         Patient Portal
                                     </Link>
                                 </Button>
                                 <Button variant="outline" asChild>
-                                    <Link href="/signin/doctor" className="justify-center">
+                                    <Link href="/sign-in/doctor" className="justify-center">
                                         <svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round" className="mr-2">
                                         <path d="M3 10a7 7 0 0 1 7-7" />
                                         <path d="M21 10a7 7 0 0 0-7-7" />
@@ -112,7 +112,7 @@ function Navbar() {
                                     </Link>
                                 </Button>
                                 <Button variant="outline" asChild>
-                                    <Link href="/signin/medical" className="justify-center">
+                                    <Link href="/sign-in/medical" className="justify-center">
                                         <svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round" className="mr-2">
                                         <path d="m19 16-7-4-7 4V3a1 1 0 0 1 1-1h12a1 1 0 0 1 1 1v13Z" />
                                         </svg>
