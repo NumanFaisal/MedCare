@@ -17,7 +17,7 @@ function UserSignin() {
         toast("Login successful!", {
             description: "Welcome back to MedCare",
         });
-        router.push('/dashboard/user');
+        router.push('/dashboard/patient');
     };
 
     return (

@@ -1,7 +1,12 @@
 import { Button } from "./ui/button";
 import Link from 'next/link'
+import { useRouter } from "next/navigation";
+
 
 function Hero() {
+
+    const router = useRouter();
+
     return(
         <section className="bg-linear-to-br from-[#E5DEFF] to-[#FDE1D3] py-26 px-70">
             <div className="container mx-auto flex flex-col md:flex-row items-center">
@@ -20,6 +25,15 @@ function Hero() {
                         </Button>
                         <Button variant="outline" className="border-primary text-primary bg-white hover:bg-primary hover:text-white text-lg py-6 px-8 rounded-lg button-hover-effect">
                             For Healthcare Providers
+                        </Button>
+                    </div>
+                    <div className="mt-4">
+                        <Button
+                        onClick={() => router.push('/ai-health')}
+                        variant="outline"
+                        className="bg-blue-50 border-blue-200 text-blue-700 hover:bg-blue-100 text-sm py-3 px-6 rounded-lg"
+                        >
+                        🤖 Try AI Health Assistant
                         </Button>
                     </div>
                 </div>
