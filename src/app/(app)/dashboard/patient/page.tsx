@@ -58,8 +58,8 @@ function PatientDashboard() {
                         </CardDescription>
                     </CardHeader>
                     <CardContent>
-                        <div className="flex flex-col sm:flex-row gap-3">
-                            <Button asChild className="bg-blue-600  hover:bg-blue-700 text-white" >
+                        <div className="flex flex-col sm:flex-row gap-3 ">
+                            <Button asChild className="hover:bg-blue-700 text-white" >
                                 <Link href={"/ai-health"} >
                                     Analyze Symptoms
                                 </Link>
