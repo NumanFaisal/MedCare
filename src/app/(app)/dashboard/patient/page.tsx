@@ -49,22 +49,22 @@ function PatientDashboard() {
                 {/* Ai health */}
                 <Card className="bg-gradient-to-r from-blue-50 to-purple-50 border-blue-200">
                     <CardHeader className="pb-2">
-                        <CardTitle className="text-2xl flex items-center gap-2">
+                        <CardTitle className="text-3xl flex items-center gap-2">
                             <Bot className="h-5 w-5 text-blue-600" />
                             AI Health Assistant
                         </CardTitle>
-                        <CardDescription>
+                        <CardDescription className="text-gray-600">
                             Get instant health insights and reduce no-shows with AI-powered assitance
                         </CardDescription>
                     </CardHeader>
                     <CardContent>
                         <div className="flex flex-col sm:flex-row gap-3">
-                            <Button asChild className="bg-blue-600 hover:bg-blue-700 text-white">
-                                <Link href={"/ai-health"}>
+                            <Button asChild className="bg-blue-600  hover:bg-blue-700 text-white" >
+                                <Link href={"/ai-health"} >
                                     Analyze Symptoms
                                 </Link>
                             </Button>
-                            <Button asChild variant={"outline"} >
+                            <Button asChild variant={"outline"} className="border-none bg-white">
                                 <Link href={"ai-health"}>
                                     Get Medicine Suggestions
                                 </Link>
@@ -103,8 +103,8 @@ function PatientDashboard() {
                                 <Calendar className="h-5 w-5 text-primary" />
                                     My Appointments
                             </CardTitle>
-                            <Button variant="ghost" size="sm" className="text-xs" asChild>
-                                <Link href="/book-appointment">Book New</Link>
+                            <Button variant="ghost" size="sm"  asChild>
+                                <Link href="/book-appointment" className="text-lg text-gray-600 hover:bg-amber-100 rounded-full">Book New</Link>
                             </Button>
                         </div>  
                     </CardHeader>
@@ -140,7 +140,7 @@ function PatientDashboard() {
                         <div className="text-center py-6">
                             <Calendar className="mx-auto h-12 w-12 text-gray-300 mb-3" />
                             <p className="text-gray-500 text-sm mb-3">No appointments booked yet</p>
-                            <Button size="sm" asChild>
+                            <Button size="sm" asChild className="rounded-full px-8 text-white text-2xl">
                                 <Link href="/book-appointment">Book Your First Appointment</Link>
                             </Button>
                         </div>
@@ -155,7 +155,7 @@ function PatientDashboard() {
                                 <FileText className="h-5 w-5 text-primary" />
                                 Recent Prescriptions
                             </CardTitle>
-                            <Button variant="ghost" size="sm" className="text-xs" asChild>
+                            <Button variant="ghost" size="sm" className="text-lg text-gray-600 hover:bg-amber-100 rounded-full" asChild>
                                 <Link href="/prescriptions">View All</Link>
                             </Button>
                         </div>
@@ -176,7 +176,7 @@ function PatientDashboard() {
                                                     Prescribed on {rx.date} by {rx.doctor}
                                                 </div>
                                             </div>
-                                            <Button size="sm" variant="outline" className="text-xs">
+                                            <Button size="sm" variant="outline" className="text-lg text-gray-600 hover:bg-amber-100 bg-white shadow-md border-none">
                                                 Details
                                                 <ChevronRight className="ml-1 h-3 w-3" />
                                             </Button>
@@ -189,19 +189,19 @@ function PatientDashboard() {
                     </CardContent>
                 </Card>
                 {/* Notifications */}
-                <Card >
+                <Card>
                     <CardHeader className="pb-2">
                         <div className="flex justify-between items-center">
                             <CardTitle className="text-xl flex items-center gap-2">
                                 <Bell className="h-5 w-5 text-primary" />
                                 Notifications
                             </CardTitle>
-                            <Button variant="ghost" size="sm" className="text-xs">
+                            <Button variant="ghost" size="sm" className="text-lg text-gray-600 hover:bg-amber-100 rounded-full">
                                 Mark All as Read
                             </Button>
                         </div>
                     </CardHeader>
-                    <CardContent>
+                    <CardContent className=" w-full">
                         <div className="space-y-4">
                             <div className="p-3 bg-primary-light/50 rounded-lg">
                                 <div className="flex items-start">
