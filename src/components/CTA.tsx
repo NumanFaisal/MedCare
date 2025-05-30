@@ -17,7 +17,7 @@ function CTA() {
                         <Button className="bg-white text-primary hover:bg-gray-100 text-lg py-6 px-8 rounded-lg hover:text-white">
                             Get Started Now
                         </Button>
-                        <Button variant="outline" className="border-white text-white hover:bg-white/20 text-lg py-6 px-8 rounded-lg button-hover-effect">
+                        <Button variant="outline" className="border-white text-white hover:text-white  hover:bg-white/20 text-lg py-6 px-8 rounded-lg button-hover-effect">
                             Learn More
                         </Button>
                         </div>

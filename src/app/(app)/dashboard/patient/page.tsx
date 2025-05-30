@@ -59,7 +59,7 @@ function PatientDashboard() {
                     </CardHeader>
                     <CardContent>
                         <div className="flex flex-col sm:flex-row gap-3 ">
-                            <Button asChild className="hover:bg-blue-700 text-white" >
+                            <Button asChild className="bg-blue-700 text-white" >
                                 <Link href={"/ai-health"} >
                                     Analyze Symptoms
                                 </Link>
@@ -103,8 +103,8 @@ function PatientDashboard() {
                                 <Calendar className="h-5 w-5 text-primary" />
                                     My Appointments
                             </CardTitle>
-                            <Button variant="ghost" size="sm"  asChild>
-                                <Link href="/book-appointment" className="text-lg text-gray-600 hover:bg-amber-100 rounded-full">Book New</Link>
+                            <Button size="sm"  asChild>
+                                <Link href="/book-appointment" className="text-lg text-white hover:bg-amber-100 rounded-full">Book New</Link>
                             </Button>
                         </div>  
                     </CardHeader>
@@ -155,7 +155,7 @@ function PatientDashboard() {
                                 <FileText className="h-5 w-5 text-primary" />
                                 Recent Prescriptions
                             </CardTitle>
-                            <Button variant="ghost" size="sm" className="text-lg text-gray-600 hover:bg-amber-100 rounded-full" asChild>
+                            <Button  size="sm" className="text-lg text-white hover:bg-amber-100 rounded-full" asChild>
                                 <Link href="/prescriptions">View All</Link>
                             </Button>
                         </div>
@@ -196,14 +196,14 @@ function PatientDashboard() {
                                 <Bell className="h-5 w-5 text-primary" />
                                 Notifications
                             </CardTitle>
-                            <Button variant="ghost" size="sm" className="text-lg text-gray-600 hover:bg-amber-100 rounded-full">
+                            <Button  size="sm" className="text-lg text-white hover:bg-amber-100 rounded-full">
                                 Mark All as Read
                             </Button>
                         </div>
                     </CardHeader>
                     <CardContent className=" w-full">
                         <div className="space-y-4">
-                            <div className="p-3 bg-primary-light/50 rounded-lg">
+                            <div className="p-3 bg-[#E5DEFF]/50 rounded-lg border-1 border-gray-300">
                                 <div className="flex items-start">
                                     <div className="flex-shrink-0">
                                         <Bell className="h-5 w-5 text-primary" />
@@ -216,7 +216,7 @@ function PatientDashboard() {
                                     </div>
                                 </div>
                             </div>
-                            <div className="p-3 rounded-lg border">
+                            <div className="p-3 rounded-lg border-1 border-gray-300">
                                 <div className="flex items-start">
                                     <div className="flex-shrink-0">
                                         <FileText className="h-5 w-5 text-gray-400" />
@@ -224,12 +224,12 @@ function PatientDashboard() {
                                     <div className="ml-3">
                                         <p className="text-sm font-medium">New Prescription</p>
                                         <p className="text-xs text-gray-500 mt-1">
-                                        Dr. Sarah Smith has issued a new prescription for you.
+                                            Dr. Sarah Smith has issued a new prescription for you.
                                         </p>
                                     </div>
                                 </div>
                             </div>
-                            <div className="p-3 rounded-lg border">
+                            <div className="p-3 rounded-lg border-1 border-gray-300  ">
                                 <div className="flex items-start">
                                     <div className="flex-shrink-0">
                                         <Bell className="h-5 w-5 text-gray-400" />

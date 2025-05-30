@@ -84,14 +84,14 @@ function DoctorCard({ doctor, onBookAppointment, onViewProfile }: DoctorCardProp
                                 size="sm"
                                 onClick={handleViewProfile}
                                 variant="outline"
-                                className="border-blue-100 border-1 shadow-md "
+                                className="border-blue-100 border-1 shadow-md cursor-pointer"
                             >
                                 View Profile
                             </Button>
                             <Button
                                 size="sm"
                                 onClick={handleBookAppointment}
-                                className='text-white'
+                                className='text-white cursor-pointer'
                             >
                                 Book Appointment
                             </Button>

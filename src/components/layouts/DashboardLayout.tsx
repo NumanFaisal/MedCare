@@ -27,8 +27,8 @@ function DashboardLayout({ children, role }: DashboardLayoutProps) {
             case 'patient':
                 return [
                     { icon: Home, label: 'Dashboard', href: '/dashboard/patient' },
-                    { icon: FileText, label: 'Prescriptions', href: '/prescriptions' },
-                    { icon: UserCircle, label: 'My Profile', href: '/profile/user' },
+                    { icon: FileText, label: 'Prescriptions', href: '/dashboard/patient/prescriptions' },
+                    { icon: UserCircle, label: 'My Profile', href: '/dashboard/patient/profile/patient' },
                 ];
             case 'doctor':
                 return [
@@ -77,14 +77,14 @@ function DashboardLayout({ children, role }: DashboardLayoutProps) {
                                 </div>
                                 <span className="text-xl font-semibold  bg-gradient-to-r from-[#9b87f5] to-[#7E69AB] bg-clip-text text-transparent">MedCare</span>
                             </Link>
-                            <div className="ml-4 px-4 py-2 py-1 bg-[#E5DEFF] rounded-full flex items-center">
+                            <div className="ml-4 px-4 py-2  bg-[#E5DEFF] rounded-full flex items-center">
                                 <span className="mr-2">{roleIcons[role]}</span>
                                 <span className="text-sm font">{roleTitles[role]}</span>
                             </div>
                         </div>
 
                         <div className="hidden md:flex items-center space-x-4">
-                            <Button variant="ghost" className="text-gray-600 hover:text-primary" asChild>
+                            <Button  className="text-gray-600  bg-white hover:text-white" asChild>
                                 <Link href="/">
                                 <Home className="h-5 w-5 mr-1" />
                                 <span>Home</span>
@@ -98,7 +98,6 @@ function DashboardLayout({ children, role }: DashboardLayoutProps) {
 
                         <div className="md:hidden">
                             <Button
-                                variant="ghost"
                                 size="icon"
                                 onClick={() => setIsMobileMenuOpen(!isMobileMenuOpen)}
                             >
@@ -135,14 +134,14 @@ function DashboardLayout({ children, role }: DashboardLayoutProps) {
                             })}
                         
                             <div className="pt-4 mt-4 border-t border-gray-200">
-                                <Button variant="ghost" className="w-full justify-start text-gray-600 hover:text-gray-900" asChild>
+                                <Button  className="w-full justify-start bg-white hover:text-white text-gray-600 " asChild>
                                     <Link href="/">
-                                        <Home className="h-5 w-5 mr-3 text-gray-400" />
+                                        <Home className="h-5 w-5 mr-3  hover:text-amber-50" />
                                         Return to Home
                                     </Link>
                                 </Button>
-                                <Button variant="ghost" className="w-full justify-start text-gray-600 hover:text-gray-900 mt-2">
-                                    <LogOut className="h-5 w-5 mr-3 text-gray-400" />
+                                <Button className="w-full justify-start text-gray-600  mt-2 bg-white hover:text-white">
+                                    <LogOut className="h-5 w-5 mr-3 hover:text-amber-50" />
                                     Sign Out
                                 </Button>
                             </div>
