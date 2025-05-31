@@ -28,7 +28,7 @@ function DashboardLayout({ children, role }: DashboardLayoutProps) {
                 return [
                     { icon: Home, label: 'Dashboard', href: '/dashboard/patient' },
                     { icon: FileText, label: 'Prescriptions', href: '/dashboard/patient/prescriptions' },
-                    { icon: UserCircle, label: 'My Profile', href: '/dashboard/patient/profile/patient' },
+                    { icon: UserCircle, label: 'My Profile', href: '/dashboard/patient/profile' },
                 ];
             case 'doctor':
                 return [
@@ -164,7 +164,6 @@ function DashboardLayout({ children, role }: DashboardLayoutProps) {
                                     <span className="font-bold gradient-text">MedCare</span>
                                 </div>
                                 <Button
-                                variant="ghost"
                                 size="icon"
                                 onClick={() => setIsMobileMenuOpen(false)}
                                 >
@@ -196,7 +195,6 @@ function DashboardLayout({ children, role }: DashboardLayoutProps) {
                         
                             <div className="pt-4 mt-4 border-t border-gray-200">
                                 <Button
-                                    variant="ghost" 
                                     className="w-full justify-start text-gray-600 hover:text-gray-900"
                                     asChild
                                     onClick={() => setIsMobileMenuOpen(false)}
@@ -207,7 +205,6 @@ function DashboardLayout({ children, role }: DashboardLayoutProps) {
                                     </Link>
                                 </Button>
                                 <Button 
-                                    variant="ghost" 
                                     className="w-full justify-start text-gray-600 hover:text-gray-900 mt-2"
                                     onClick={() => setIsMobileMenuOpen(false)}
                                 >
