@@ -26,7 +26,7 @@ function Navbar() {
                     <Link href="/about">Contact </Link>
 
                     <div className="relative ">
-                        <Button variant="ghost" className="border border-primary text-primary hover:bg-primary hover:text-white flex items-center mx-2" onClick={() => setIsUserDropdownOpen(!isUserDropdownOpen)}>
+                        <Button  className="border border-primary  hover:bg-primary text-white flex items-center mx-2" onClick={() => setIsUserDropdownOpen(!isUserDropdownOpen)}>
                             <User size={16} />
                             <span>Sign In</span>
                         </Button>
