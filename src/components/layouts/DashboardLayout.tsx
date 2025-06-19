@@ -33,9 +33,9 @@ function DashboardLayout({ children, role }: DashboardLayoutProps) {
             case 'doctor':
                 return [
                     { icon: Home, label: 'Dashboard', href: '/dashboard/doctor' },
-                    { icon: FileText, label: 'Create Prescription', href: '/create-prescription' },
-                    { icon: User, label: 'Patients', href: '/patients' },
-                    { icon: UserCircle, label: 'My Profile', href: '/profile/doctor' },
+                    { icon: FileText, label: 'Create Prescription', href: '/dashboard/doctor/create-prescription' },
+                    { icon: User, label: 'Patients', href: '/dashboard/doctor/patients' },
+                    { icon: UserCircle, label: 'My Profile', href: '/dashboard/doctor/profile' },
                 ];
             case 'medical':
                 return [
