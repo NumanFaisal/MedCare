@@ -3,7 +3,7 @@
 import DashboardLayout from "@/components/layouts/DashboardLayout";
 import { Button } from "@/components/ui/button";
 import { Card, CardContent, CardDescription, CardHeader, CardTitle } from "@/components/ui/card";
-import { Calendar, Clock, Heart, User, Users } from "lucide-react";
+import { BarChart, Book, Calendar, ChevronRight, Clock, Heart, User, Users } from "lucide-react";
 import Link from "next/link";
 
 
@@ -108,7 +108,7 @@ function DoctorDashboard () {
                     <CardContent>
                         <div className="space-y-4">
                             {upcomingAppointments.map(appointment => (
-                                <div key={appointment.id} className="flex items-center justify-between p-3 border rounded-lg">
+                                <div key={appointment.id} className="flex items-center justify-between p-3 border border-gray-300 rounded-lg">
                                     <div className="flex items-center">
                                         <div className={`h-10 w-1 rounded-full mr-3 ${appointment.status === 'confirmed' ? 'bg-green-500' : 'bg-amber-400'}`} />
                                         <div>
@@ -120,7 +120,7 @@ function DoctorDashboard () {
                                             </div>
                                         </div>
                                     </div>
-                                    <Button size="sm" variant="ghost">View</Button>
+                                    <Button size="sm" variant="ghost" className="border-gray-300 border">View</Button>
                                 </div>
                             ))}
 
@@ -132,7 +132,81 @@ function DoctorDashboard () {
                         </div>
                     </CardContent>
                 </Card>
+
+                {/* Recent Patient */}
+                <Card>
+                    <CardHeader className="pd-2">
+                        <div className="flex justify-between items-center">
+                            <CardTitle className="text-xl flex items-center gap-2">
+                                <Users className="h-5 w-5 text-primary" />
+                                Recent Patients
+                            </CardTitle>
+                            <Button variant={"ghost"} size={"sm"} asChild>
+                                <Link href={"/patients"}>
+                                    View All
+                                    <ChevronRight className="ml-1 h-4 w-4" />
+                                </Link>
+                            </Button>
+                        </div>
+                    </CardHeader>
+                    <CardContent className="space-y-4">
+                        {recentPatient.map(patient => (
+                            <div key={patient.id} className="flex items-center justify-between p-3 border border-gray-300 rounded-lg">
+                                <div>
+                                    <p className="font-medium">{patient.name}</p>
+                                    <div className="flex items-center text-sm text-gray-500">
+                                        <p className="text-sm">{patient.reason}</p>
+                                        <span className="mx-2 text-gray-300">•</span>
+                                        <p className="text-xs">Last visit: {new Date(patient.lastVisit).toLocaleDateString()}</p>
+                                    </div>
+                                </div>
+                                <Button size="sm" variant="ghost" className="border-gray-300 border">View Details</Button>
+                            </div>
+                        ))}
+
+                        <div className="text-center pt-2">
+                            <Button variant={"link"} size={"sm"} asChild>
+                                <Link href={"/patients"}>View All Patients</Link>
+                            </Button>
+                        </div>
+                    </CardContent>
+                </Card>
             </div>
+
+            {/* Quick Actions  */}
+            <Card className="mt-7">
+                <CardHeader className="pb-2">
+                    <CardTitle className="text-xl">Quick Actions</CardTitle>
+                </CardHeader>
+                <CardContent>
+                    <div className="grid grid-cols-2 md:grid-cols-4 gap-4">
+                        <Button className="h-auto py-4 flex flex-col " asChild>
+                            <Link href={"/create-prescription"} className="text-white">
+                                <Book className="mb-2 text-white "/>
+                                Create Prescription
+                            </Link>
+                        </Button>
+                        <Button className="h-auto py-4 flex flex-col" asChild>
+                            <Link href={"/add-patient"} className="text-white">
+                                <Users className="mb-2 text-white "/>
+                                Add Patient
+                            </Link>
+                        </Button>
+                        <Button className="h-auto py-4 flex flex-col" asChild>
+                            <Link href={"/lab-results"} className="text-white">
+                                <BarChart className="mb-2 text-white "/>
+                                Lab Results
+                            </Link>
+                        </Button>
+                        <Button className="h-auto py-4 flex flex-col " asChild>
+                            <Link href={"/schedule"} className="text-white">
+                                <Calendar className="mb-2 text-white "/>
+                                Schedule
+                            </Link>
+                        </Button>
+                    </div>
+                </CardContent>
+            </Card>
         </DashboardLayout>
     )
 

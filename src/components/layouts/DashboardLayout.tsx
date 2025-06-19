@@ -62,7 +62,7 @@ function DashboardLayout({ children, role }: DashboardLayoutProps) {
     };
 
     return (
-        <div className="min-h-screen bg-gray-50 flex flex-col">
+        <div className="min-h-screen bg-gray-100 flex flex-col">
             {/* Top Navigation */}
             <header className="bg-white shadow-sm border-b border-gray-200">
                 <div className="px-4 sm:px-6 lg:px-8">
