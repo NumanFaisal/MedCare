@@ -178,7 +178,7 @@ function PrescriptionPatient(){
                                 prescription.map(prescription => (
                                     <div 
                                     key={prescription.id}
-                                    className="border-1 border-primary rounded-lg overflow-hidden"
+                                    className="border-1 border-gray-300 rounded-lg overflow-hidden"
                                     >
                                         <div className="flex items-center justify-between p-4 hover:bg-gray-50 cursor-pointer"
                                         onClick={() => toggleExpand(prescription.id)}
@@ -210,7 +210,7 @@ function PrescriptionPatient(){
                                             </div>
                                         </div>
                                             {expandedPrescription === prescription.id && (
-                                                <div className="p-4 bg-gray-50 border-t  border-primary">
+                                                <div className="p-4 bg-gray-50 border-t  border-gray-300">
                                                     <dl className="grid grid-cols-1 sm:grid-cols-2 gap-x-4 gap-y-3">
                                                         <div>
                                                             <dt className="text-sm font-medium text-gray-500">Prescription ID</dt>

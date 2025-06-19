@@ -5,7 +5,6 @@ import { Button } from "@/components/ui/button";
 import { Card, CardContent, CardDescription, CardHeader, CardTitle } from "@/components/ui/card";
 import { BarChart, Book, Calendar, ChevronRight, Clock, Heart, User, Users } from "lucide-react";
 import Link from "next/link";
-import React, { useEffect, useState } from "react";
 
 
 function DoctorDashboard () {
@@ -22,17 +21,6 @@ function DoctorDashboard () {
         { id: 2, name: "Prince Tiwari", lastVisit: "2025-05-29", reason: "Back pain", status: "No Follow-up needed"},
         { id: 3, name: "Pratik Anand", lastVisit: "2025-05-21", reason: "Prescription renewal", status: "Prescription issued"},
     ];
-
-    // Add this state for formatted last visit dates
-    const [formattedLastVisits, setFormattedLastVisits] = useState<string[]>([]);
-
-    useEffect(() => {
-        setFormattedLastVisits(
-            recentPatient.map(patient =>
-                new Date(patient.lastVisit).toLocaleDateString()
-            )
-        );
-    }, []);
 
     return (
         <DashboardLayout role="doctor">
@@ -162,16 +150,14 @@ function DoctorDashboard () {
                         </div>
                     </CardHeader>
                     <CardContent className="space-y-4">
-                        {recentPatient.map((patient, idx) => (
+                        {recentPatient.map(patient => (
                             <div key={patient.id} className="flex items-center justify-between p-3 border border-gray-300 rounded-lg">
                                 <div>
                                     <p className="font-medium">{patient.name}</p>
                                     <div className="flex items-center text-sm text-gray-500">
                                         <p className="text-sm">{patient.reason}</p>
                                         <span className="mx-2 text-gray-300">•</span>
-                                        <p className="text-xs">
-                                            Last visit: {formattedLastVisits[idx]}
-                                        </p>
+                                        <p className="text-xs">Last visit: {new Date(patient.lastVisit).toLocaleDateString()}</p>
                                     </div>
                                 </div>
                                 <Button size="sm" variant="ghost" className="border-gray-300 border">View Details</Button>
