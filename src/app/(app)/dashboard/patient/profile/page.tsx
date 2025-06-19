@@ -7,6 +7,7 @@ import { Input } from "@/components/ui/input";
 import { Label } from "@/components/ui/label";
 import { Tabs, TabsContent, TabsList, TabsTrigger } from "@/components/ui/tabs";
 import { toast } from "sonner";
+import React, { useEffect, useState } from "react";
 
 
 function PatientProfile() {
@@ -28,7 +29,14 @@ function PatientProfile() {
         bloodType: "O+",
         allergies: "Penicillin",
         medicalConditions: "Hypertension, Asthma",
+        lastVisit: "2023-10-10T14:48:00.000Z"
     };
+
+    const [lastVisitDate, setLastVisitDate] = useState("");
+
+    useEffect(() => {
+        setLastVisitDate(new Date(patient.lastVisit).toLocaleDateString());
+    }, [patient.lastVisit]);
 
     const handleProfileUpdate = (e: React.FormEvent<HTMLFormElement>) => {
         e.preventDefault();
@@ -206,6 +214,9 @@ function PatientProfile() {
                         </Card>
                     </TabsContent>
                 </Tabs>
+                <p className="text-xs">
+                    Last visit: {lastVisitDate}
+                </p>
             </div>
         </DashboardLayout>
     )
