@@ -6,7 +6,7 @@ import { Card, CardContent, CardDescription, CardFooter, CardHeader, CardTitle }
 import { Input } from "@/components/ui/input";
 import { Label } from "@/components/ui/label";
 import { Tabs, TabsContent, TabsList, TabsTrigger } from "@/components/ui/tabs";
-import { toast } from "sonner";
+import { toast, Toaster } from "sonner";
 import React, { useEffect, useState } from "react";
 
 
@@ -40,7 +40,7 @@ function PatientProfile() {
 
     const handleProfileUpdate = (e: React.FormEvent<HTMLFormElement>) => {
         e.preventDefault();
-
+        // console.log('handleProfileUpdate called');
         toast("Profile Updated", {
             description: "Your profile information has been updated successfully.",
         });
@@ -55,6 +55,7 @@ function PatientProfile() {
 
     return (
         <DashboardLayout role="patient">
+            <Toaster />
             <div className="space-y-6">
                 <div>
                     <h1 className="text-3xl front-bold">My Profile</h1>
@@ -208,7 +209,7 @@ function PatientProfile() {
                                     </div>
                                 </CardContent>
                                 <CardFooter className="flex justify-end">
-                                    <Button className="border bg-white text-primary hover:bg-primary hover:text-white" type="submit">Update Password</Button>
+                                    <Button className="border bg-white text-primary mt-4 hover:bg-primary hover:text-white" type="submit">Update Password</Button>
                                 </CardFooter>
                             </form>
                         </Card>
