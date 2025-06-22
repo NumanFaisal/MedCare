@@ -3,7 +3,7 @@
 import DashboardLayout from "@/components/layouts/DashboardLayout";
 import { Button } from "@/components/ui/button";
 import { Card, CardContent, CardDescription, CardHeader, CardTitle } from "@/components/ui/card";
-import { BarChart, Book, Calendar, ChevronRight, Clock, Heart, User, Users } from "lucide-react";
+import { BarChart, Book, Calendar, ChevronRight, Clock, Heart, Users } from "lucide-react";
 import Link from "next/link";
 
 
