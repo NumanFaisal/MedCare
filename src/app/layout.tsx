@@ -1,23 +1,19 @@
-"use client";
-import Navbar from "@/components/Navbar";
+
+// import Navbar from "@/components/Navbar";
 import "./globals.css";
-import { usePathname } from "next/navigation";
+// import { usePathname } from "next/navigation";
+import NavbarWrapper from "@/components/NavbarWrapper";
 
 function RootLayout({
   children,
 }: Readonly<{
   children: React.ReactNode;
 }>) {
-  const pathname = usePathname();
-  const hideNavbar =
-    pathname.startsWith("/sign-in") ||
-    pathname.startsWith("/sign-up") ||
-    pathname.startsWith("/dashboard");
 
   return (
     <html lang="en">
       <body>
-        {!hideNavbar && <Navbar />}
+        <NavbarWrapper />
         {children}
       </body>
     </html>
