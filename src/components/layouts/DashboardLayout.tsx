@@ -40,8 +40,8 @@ function DashboardLayout({ children, role }: DashboardLayoutProps) {
             case 'medical':
                 return [
                     { icon: Home, label: 'Dashboard', href: '/dashboard/medical' },
-                    { icon: ShoppingBag, label: 'Fetch Prescriptions', href: '/fetch-prescriptions' },
-                    { icon: UserCircle, label: 'Shop Profile', href: '/profile/medical' },
+                    { icon: ShoppingBag, label: 'Fetch Prescriptions', href: '/dashboard/medical/fetch-prescriptions' },
+                    { icon: UserCircle, label: 'Shop Profile', href: '/dashboard/medical/profile' },
                 ];
             default:
                 return [];
