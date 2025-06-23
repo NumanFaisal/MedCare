@@ -20,7 +20,7 @@ function DoctorCard({ doctor, onBookAppointment, onViewProfile }: DoctorCardProp
         if (onBookAppointment) {
             onBookAppointment(doctor.id);
         } else {
-            router.push(`/book-appointment?doctorId=${doctor.id}`);
+            router.push(`/book-appointment/${doctor.id}`);
         }
     };
 
@@ -38,7 +38,7 @@ function DoctorCard({ doctor, onBookAppointment, onViewProfile }: DoctorCardProp
             <CardContent className="p-6">
                 <div className="flex items-start space-x-4">
                     <img
-                        src={doctor.image}
+                        src="https://images.unsplash.com/photo-1506794778202-cad84cf45f1d?q=80&w=1287&auto=format&fit=crop"
                         alt={doctor.name}
                         className="w-16 h-16 rounded-full object-cover"
                     />

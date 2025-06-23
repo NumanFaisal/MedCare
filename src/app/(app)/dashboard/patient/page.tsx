@@ -104,7 +104,7 @@ function PatientDashboard() {
                                     My Appointments
                             </CardTitle>
                             <Button size="sm"  asChild>
-                                <Link href="/book-appointment" className="text-lg text-white hover:bg-amber-100 rounded-full">Book New</Link>
+                                <Link href="/book-appointment" className="text-lg text-white hover:bg-amber-100 rounded-full" >Book New</Link>
                             </Button>
                         </div>  
                     </CardHeader>

@@ -26,3 +26,5 @@ export interface DoctorType {
         workingDays: string[];
     };
 }
+
+

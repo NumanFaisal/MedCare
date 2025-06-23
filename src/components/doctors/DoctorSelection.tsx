@@ -15,13 +15,13 @@ function DoctorSelection ({ selectedDoctor, onSelectDoctor }: DoctorSelectionPro
             id: "1",
             name: "Dr. Sarah Johnson",
             specialty: "Cardiologist",
-            image: "/placeholder.svg",
+            image: "https://images.pexels.com/photos/5215024/pexels-photo-5215024.jpeg?auto=compress&w=160&h=160&fit=crop",
             hospital: "City General Hospital",
             location: "Downtown",
             experience: "10+ years",
             rating: 4.8,
             totalReviews: 127,
-            consultationFee: "$150",
+            consultationFee: "RS.150",
             availability: {
                 openTime: "09:00",
                 closeTime: "17:00",
@@ -32,13 +32,13 @@ function DoctorSelection ({ selectedDoctor, onSelectDoctor }: DoctorSelectionPro
             id: "2",
             name: "Dr. Michael Chen",
             specialty: "Dermatologist",
-            image: "/placeholder.svg",
+            image: "https://images.unsplash.com/photo-1506794778202-cad84cf45f1d?q=80&w=1287&auto=format&fit=crop",
             hospital: "Metro Health Center",
             location: "Midtown",
             experience: "8+ years",
             rating: 4.6,
             totalReviews: 89,
-            consultationFee: "550",
+            consultationFee: "Rs.550",
             availability: {
                 openTime: "10:00",
                 closeTime: "18:00",
@@ -49,13 +49,13 @@ function DoctorSelection ({ selectedDoctor, onSelectDoctor }: DoctorSelectionPro
             id: "3",
             name: "Dr. Emily Rodriguez",
             specialty: "Pediatrician",
-            image: "/placeholder.svg",
+            image: "https://images.pexels.com/photos/1181696/pexels-photo-1181696.jpeg?auto=compress&w=160&h=160&fit=crop",
             hospital: "Children's Medical Center",
             location: "Uptown",
             experience: "12+ years",
             rating: 4.9,
             totalReviews: 156,
-            consultationFee: "300",
+            consultationFee: "RS.300",
             availability: {
                 openTime: "08:00",
                 closeTime: "16:00",
@@ -66,13 +66,13 @@ function DoctorSelection ({ selectedDoctor, onSelectDoctor }: DoctorSelectionPro
             id: "4",
             name: "Dr. James Wilson",
             specialty: "Orthopedic Surgeon",
-            image: "/placeholder.svg",
+            image: "https://images.pexels.com/photos/5452293/pexels-photo-5452293.jpeg?auto=compress&w=160&h=160&fit=crop",
             hospital: "Sports Medicine Institute",
             location: "Westside",
             experience: "15+ years",
             rating: 4.7,
             totalReviews: 203,
-            consultationFee: "400",
+            consultationFee: "RS.400",
             availability: {
                 openTime: "09:00",
                 closeTime: "17:00",
@@ -100,9 +100,9 @@ function DoctorSelection ({ selectedDoctor, onSelectDoctor }: DoctorSelectionPro
                         >
                             <div className="flex items-start space-x-4">
                                 <img
-                                src={doctor.image}
-                                alt={doctor.name}
-                                className="w-16 h-16 rounded-full object-cover"
+                                    src={doctor.image}
+                                    alt={doctor.name}
+                                    className="w-16 h-16 rounded-full object-cover"
                                 />
                                 <div className="flex-1">
                                     <h3 className="text-lg font-semibold">{doctor.name}</h3>
@@ -137,7 +137,7 @@ function DoctorSelection ({ selectedDoctor, onSelectDoctor }: DoctorSelectionPro
                                         </span>
                                     </div>
                                         <div className="text-lg font-bold text-primary">
-                                        {doctor.consultationFee}
+                                            {doctor.consultationFee}
                                         </div>
                                     </div>
                                 </div>
