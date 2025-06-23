@@ -19,4 +19,10 @@ export interface DoctorType {
     totalReviews: number;
     image: string;
     hospital: string;
+    consultationFee: string;
+    availability: {
+        openTime: string;
+        closeTime: string;
+        workingDays: string[];
+    };
 }
