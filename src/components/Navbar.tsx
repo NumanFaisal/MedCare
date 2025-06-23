@@ -22,8 +22,8 @@ function Navbar() {
 
                 <div className="hidden md:flex justify-around items-center space-x-8">
                     <Link href="/about">About </Link>
-                    <Link href="/about">Features </Link>
-                    <Link href="/about">Contact </Link>
+                    <Link href="/features">Features </Link>
+                    <Link href="/contact">Contact </Link>
 
                     <div className="relative ">
                         <Button  className="border border-primary  hover:bg-primary text-white flex items-center mx-2" onClick={() => setIsUserDropdownOpen(!isUserDropdownOpen)}>
