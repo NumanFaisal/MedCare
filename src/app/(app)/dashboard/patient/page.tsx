@@ -28,8 +28,8 @@ function PatientDashboard() {
     }, []);
 
     const recentPrescriptions = [
-        { id: 1, medication: "Amoxicillin", dosage: "500mg", frequency: "Every 8 hours", doctor: "Dr. Sarah Smith", date: "May 28, 2023" },
-        { id: 2, medication: "Lisinopril", dosage: "10mg", frequency: "Once daily", doctor: "Dr. Sarah Smith", date: "May 15, 2023" }
+        { id: 1, medication: "Amoxicillin", dosage: "500mg", frequency: "Every 8 hours", doctor: "Dr. Shah Faisal", date: "May 28, 2023" },
+        { id: 2, medication: "Lisinopril", dosage: "10mg", frequency: "Once daily", doctor: "Dr. Numan Faisal", date: "May 15, 2023" }
     ];
 
     const healthIndicators = [
@@ -211,7 +211,7 @@ function PatientDashboard() {
                                     <div className="ml-3">
                                         <p className="text-sm font-medium">Appointment Reminder</p>
                                         <p className="text-xs text-gray-500 mt-1">
-                                        You have an appointment with Dr. Sarah Smith tomorrow at 10:00 AM.
+                                        You have an appointment with Dr. Shah Faisal tomorrow at 10:00 AM.
                                         </p>
                                     </div>
                                 </div>
@@ -224,7 +224,7 @@ function PatientDashboard() {
                                     <div className="ml-3">
                                         <p className="text-sm font-medium">New Prescription</p>
                                         <p className="text-xs text-gray-500 mt-1">
-                                            Dr. Sarah Smith has issued a new prescription for you.
+                                            Dr. Numan Faisal has issued a new prescription for you.
                                         </p>
                                     </div>
                                 </div>

@@ -16,18 +16,18 @@ function DoctorProfile() {
     // Sample doctor data
     const doctor = {
         id: "D123456",
-        firstName: "Sarah",
-        lastName: "Smith",
-        email: "dr.smith@example.com",
-        phone: "+1 (555) 456-7890",
+        firstName: "Shah",
+        lastName: "Faisal",
+        email: "dr.shah@example.com",
+        phone: "9923423623",
         specialization: "Cardiologist",
         licenseNumber: "MED12345",
-        hospitalAffiliation: "City General Hospital",
+        hospitalAffiliation: "Tata Main Hospital",
         education: "Harvard Medical School, MD",
         experience: "15 years",
-        languages: "English, Spanish",
-        consultationFee: "$150",
-        bio: "Dr. Sarah Smith is a board-certified cardiologist with over 15 years of experience in treating heart conditions."
+        languages: "English, Hindi",
+        consultationFee: "Rs.500",
+        bio: "Dr. Shah Faisal is a board-certified cardiologist with over 15 years of experience in treating heart conditions."
     };
 
     const handleProfileUpdate = (e: React.FormEvent<HTMLFormElement>) => {

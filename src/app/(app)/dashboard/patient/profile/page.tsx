@@ -15,21 +15,21 @@ function PatientProfile() {
     // Sample user data
     const patient = {
         id: "U123456",
-        firstName: "John",
-        lastName: "Doe",
-        email: "john.doe@example.com",
+        firstName: "Numan",
+        lastName: "Faisal",
+        email: "numan.fa@example.com",
         dateOfBirth: "1985-06-15",
-        phone: "+1 (555) 123-4567",
-        address: "123 Main St",
-        city: "Springfield",
-        state: "IL",
-        pinCode: "62704",
-        emergencyContact: "Jane Doe",
-        emergencyPhone: "+1 (555) 987-6543",
+        phone: "7033901234",
+        address: "Road no. 14 Mango",
+        city: "Jamshedpur",
+        state: "Jharkhand",
+        pinCode: "823011",
+        emergencyContact: "Rehan",
+        emergencyPhone: "987654321",
         bloodType: "O+",
         allergies: "Penicillin",
         medicalConditions: "Hypertension, Asthma",
-        lastVisit: "2023-10-10T14:48:00.000Z"
+        lastVisit: "2025-10-10"
     };
 
     const [lastVisitDate, setLastVisitDate] = useState("");
