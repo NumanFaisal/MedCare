@@ -1,0 +1,121 @@
+generator client {
+  provider = "prisma-client-js"
+  output   = "../src/generated/prisma"
+}
+
+datasource db {
+  provider = "postgresql"
+  url      = env("DATABASE_URL")
+}
+
+enum BloodType {
+  A_POS
+  A_NEG
+  B_POS
+  B_NEG
+  AB_POS
+  AB_NEG
+  O_POS
+  O_NEG
+}
+
+enum Role {
+  PATIENT
+  DOCTOR
+  MEDICAL
+}
+
+enum AppointmentType {
+  NEW_PATIENT
+  FOLLOW_UP
+  CHECK_UP
+}
+
+model Patient {
+  id                   String         @id @default(uuid())
+  createdAt            DateTime       @default(now())
+  firstName            String
+  lastName             String
+  email                String         @unique
+  password             String
+  patientId            String         @unique
+  dateOfBirth          DateTime
+  city                 String
+  state                String
+  pinCode              Int
+  contactName          String
+  contactNumber        String
+  phoneNumber          String
+  streetAddress        String
+  bloodType            BloodType
+  allergies            String
+  medicalConditions    String
+  currentMedications   String
+  currentPassword      String
+  age                  Int
+  role                 Role
+
+  prescriptions        Prescription[]
+  appointments         Appointment[]
+}
+
+model Doctor {
+  id                String         @id @default(uuid())
+  createdAt         DateTime       @default(now())
+  firstName         String
+  lastName          String
+  age               Int
+  licenseNumber     String
+  qualifications    String[]       @default([])
+  experiences       String[]       @default([])
+  specialization    String
+  email             String         @unique
+  password          String
+  role              Role
+  description       String
+
+  prescriptions     Prescription[]
+  appointments      Appointment[]
+}
+
+model Medical {
+  id          String   @id @default(uuid())
+  createdAt   DateTime @default(now())
+  firstName   String
+  lastName    String
+  email       String   @unique
+  password    String
+  address     String
+  role        Role
+}
+
+model Appointment {
+  id               String         @id @default(uuid())
+  date             DateTime
+  reason           String?
+  appointmentType  AppointmentType
+  status           String         @default("Scheduled")
+
+  patientId        String
+  doctorId         String
+
+  patient          Patient        @relation(fields: [patientId], references: [id])
+  doctor           Doctor         @relation(fields: [doctorId], references: [id])
+}
+
+model Prescription {
+  id                 String     @id @default(uuid())
+  prescriptionId     String     @unique
+  createdAt          DateTime   @default(now())
+  medicine           String
+  dosage             String
+  frequency          String
+  startDate          DateTime
+  endDate            DateTime
+
+  patientId          String
+  doctorId           String
+
+  patient            Patient    @relation(fields: [patientId], references: [id])
+  doctor             Doctor     @relation(fields: [doctorId], references: [id])
+}
