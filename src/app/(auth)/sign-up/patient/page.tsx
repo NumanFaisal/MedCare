@@ -6,18 +6,61 @@ import { Checkbox } from "@/components/ui/checkbox";
 import { Input } from "@/components/ui/input";
 import { Label } from "@/components/ui/label";
 import { useRouter } from "next/navigation";
-import { toast } from "sonner"; // import toast from sonner
-
+import { toast } from "sonner";
+import { useState } from "react";
+import axios from "axios";
 
 function UserSignin() {
     const router = useRouter();
+    const [form, setForm] = useState({
+        firstName: "",
+        lastName: "",
+        email: "",
+        password: "",
+        confirmPassword: "",
+        terms: false,
+    });
+    const [error, setError] = useState("");
 
-    const handleSubmit = (e: React.FormEvent<HTMLFormElement>) => {
+    const handleChange = (e: React.ChangeEvent<HTMLInputElement>) => {
+        const { id, value, type, checked } = e.target;
+        setForm(prev => ({
+            ...prev,
+            [id]: type === "checkbox" ? checked : value,
+        }));
+    };
+
+    const handleSubmit = async (e: React.FormEvent<HTMLFormElement>) => {
         e.preventDefault();
-        toast("Login successful!", {
-            description: "Welcome back to MedCare",
-        });
-        router.push('/dashboard/user');
+        setError("");
+
+        if (form.password !== form.confirmPassword) {
+            setError("Passwords do not match.");
+            return;
+        }
+
+        try {
+            const res = await axios.post("/api/auth/sign-up/patient", {
+                firstName: form.firstName,
+                lastName: form.lastName,
+                email: form.email,
+                password: form.password,
+            });
+
+            if (res.data?.error) {
+                setError(res.data.error);
+                toast.error(res.data.error);
+                return;
+            }
+
+            toast("Account created!", {
+                description: "Welcome to MedCare",
+            });
+            router.push('/dashboard/user');
+        } catch (err: any) {
+            setError(err.response?.data?.error || "Something went wrong. Please try again.");
+            toast.error(err.response?.data?.error || "Something went wrong. Please try again.");
+        }
     };
 
     return (
@@ -32,19 +75,23 @@ function UserSignin() {
                     <div className="space-y-2">
                         <Label htmlFor="firstName">First Name</Label>
                         <Input 
-                        id="firstName" 
-                        placeholder="Sarah" 
-                        required
-                        className="border-none shadow-md "
+                            id="firstName" 
+                            placeholder="Sarah" 
+                            required
+                            className="border-none shadow-md "
+                            value={form.firstName}
+                            onChange={handleChange}
                         />
                     </div>
                     <div className="space-y-2">
                         <Label htmlFor="lastName">Last Name</Label>
                         <Input 
-                        id="lastName" 
-                        placeholder="Smith" 
-                        required
-                        className="border-none shadow-md "
+                            id="lastName" 
+                            placeholder="Smith" 
+                            required
+                            className="border-none shadow-md "
+                            value={form.lastName}
+                            onChange={handleChange}
                         />
                     </div>
                 </div>
@@ -57,6 +104,8 @@ function UserSignin() {
                         placeholder="john.doe@example.com" 
                         required
                         className="border-none shadow-md "
+                        value={form.email}
+                        onChange={handleChange}
                     />
                 </div>
 
@@ -68,6 +117,8 @@ function UserSignin() {
                         placeholder="••••••••" 
                         required
                         className="border-none shadow-md "
+                        value={form.password}
+                        onChange={handleChange}
                     />
                 </div>
 
@@ -79,11 +130,25 @@ function UserSignin() {
                         placeholder="••••••••" 
                         required
                         className="border-none shadow-md "
+                        value={form.confirmPassword}
+                        onChange={handleChange}
                     />
                 </div>
 
                 <div className="flex items-center space-x-2">
-                    <Checkbox id="terms" required />
+                    <Checkbox 
+                        id="terms" 
+                        required 
+                        checked={form.terms}
+                        onCheckedChange={checked => handleChange({
+                            target: {
+                                id: "terms",
+                                type: "checkbox",
+                                checked,
+                            } as any
+                        } as React.ChangeEvent<HTMLInputElement>)
+                        }
+                    />
                     <label
                         htmlFor="terms"
                         className="text-sm font-medium leading-none peer-disabled:cursor-not-allowed peer-disabled:opacity-70"
@@ -93,6 +158,9 @@ function UserSignin() {
                 </div>
         
                 <Button type="submit" className="w-full text-white">Create Account</Button>
+                {error && (
+                    <div className="text-red-600 text-sm mt-2 text-center">{error}</div>
+                )}
             </form>
         </AuthLayout>
     )

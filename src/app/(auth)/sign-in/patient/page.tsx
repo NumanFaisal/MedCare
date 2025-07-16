@@ -6,14 +6,34 @@ import { Checkbox } from "@/components/ui/checkbox";
 import { Input } from "@/components/ui/input";
 import { Label } from "@/components/ui/label";
 import { useRouter } from "next/navigation";
-import { toast } from "sonner"; // import toast from sonner
-
+import { toast } from "sonner";
+import { signIn } from "next-auth/react";
+import { useState } from "react";
 
 function UserSignin() {
     const router = useRouter();
+    const [email, setEmail] = useState("");
+    const [password, setPassword] = useState("");
+    const role = "PATIENT"; // Default role for patient sign-in
+    const [error, setError] = useState("");
 
-    const handleSubmit = (e: React.FormEvent<HTMLFormElement>) => {
+    const handleSubmit = async (e: React.FormEvent<HTMLFormElement>) => {
         e.preventDefault();
+        setError("");
+
+        const res = await signIn("credentials", {
+            email,
+            password,
+            role, // Pass role to NextAuth
+            redirect: false,
+        });
+
+        if (res?.error) {
+            setError(res.error);
+            toast.error("Login failed: " + res.error);
+            return;
+        }
+
         toast("Login successful!", {
             description: "Welcome back to MedCare",
         });
@@ -34,6 +54,8 @@ function UserSignin() {
                         id="email" 
                         type="email" 
                         placeholder="john.doe@example.com" 
+                        value={email}
+                        onChange={(e) => setEmail(e.target.value)}
                         required
                         className="border-none shadow-xl "
                     />
@@ -50,6 +72,8 @@ function UserSignin() {
                         id="password"
                         type="password"
                         placeholder="******"
+                        value={password}
+                        onChange={(e) => setPassword(e.target.value)}
                         required
                         className="border-none shadow-xl "
                     />
@@ -66,6 +90,9 @@ function UserSignin() {
                 </div>
         
                 <Button type="submit" className="w-full text-white">Sign In</Button>
+                {error && (
+                    <div className="text-red-600 text-sm mt-2 text-center">{error}</div>
+                )}
             </form>
         </AuthLayout>
     )
