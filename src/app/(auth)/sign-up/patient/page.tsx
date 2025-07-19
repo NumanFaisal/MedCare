@@ -19,6 +19,7 @@ function UserSignin() {
         password: "",
         confirmPassword: "",
         terms: false,
+        role: "PATIENT",
     });
     const [error, setError] = useState("");
 
@@ -45,6 +46,7 @@ function UserSignin() {
                 lastName: form.lastName,
                 email: form.email,
                 password: form.password,
+                role: form.role
             });
 
             if (res.data?.error) {

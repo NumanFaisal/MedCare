@@ -1,9 +1,9 @@
-import { PrismaClient, Role } from "@prisma/client";
+// import { PrismaClient, Role } from "@prisma/client";
 import bcrypt from "bcryptjs";
 import { signupSchema } from "@/app/schemas/signupSchema"
+import { prisma, Role } from "@/lib/prisma";
 
 
-const prisma = new PrismaClient();
 
 
 export async function POST(request: Request) {

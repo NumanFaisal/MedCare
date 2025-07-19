@@ -1,17 +1,19 @@
 import { NextAuthOptions } from "next-auth";
 import CredentialsProvider from "next-auth/providers/credentials";
-// import { prisma } from "@/lib/prisma";
 import bcrypt from "bcryptjs";
-import { PrismaClient } from "@prisma/client";
+import { prisma } from "@/lib/prisma";
+// import { PrismaClient } from "@prisma/client";
 
-const prisma = new PrismaClient();
 
+// const prisma = new PrismaClient();
 
 type User = {
     id: string;
     email: string;
     role: "PATIENT" | "DOCTOR" | "MEDICAL";
 };
+
+
 
 export const authOptions: NextAuthOptions = {
     providers: [
