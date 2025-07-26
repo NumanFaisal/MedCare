@@ -41,7 +41,7 @@ function UserSignin() {
         }
 
         try {
-            const res = await axios.post("/api/auth/sign-up/patient", {
+            const res = await axios.post("/api/sign-up", {
                 firstName: form.firstName,
                 lastName: form.lastName,
                 email: form.email,

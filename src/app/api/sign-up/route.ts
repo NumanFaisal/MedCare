@@ -49,15 +49,19 @@ export async function POST(request: Request) {
                 },
             });
         } else if (data.role === 'MEDICAL') {
+            // For medical users, we don't require firstName/lastName in validation
+            // but we need to handle them separately
+            const medicalData = {
+                shopName: data.shopName || `${data.firstName || ''} ${data.lastName || ''}`.trim() || '',
+                email: data.email,
+                password: hashedPassword,
+                role: data.role === "MEDICAL" ? "MEDICAL" : "PATIENT", // Ensure role is set correctly
+                address: data.address || '',
+                phoneNumber: data.phoneNumber || '',
+            };
+
             newUser = await prisma.medical.create({
-                data: {
-                    shopName: data.shopName,
-                    email: data.email,
-                    password: hashedPassword,
-                    role: data.role === "MEDICAL" ? "MEDICAL" : "PATIENT", // Ensure role is set correctly
-                    address: data.licenseNumber || '',
-                    phoneNumber: data.phoneNumber || '',
-                },
+                data: medicalData,
             });
         } else {
             return Response.json({
