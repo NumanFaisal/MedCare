@@ -24,13 +24,13 @@ model Patient {
   contactNumber      String?
   phoneNumber        String?
   streetAddress      String?
-  bloodType          BloodType?
+  bloodType          String?
   allergies          String?
   medicalConditions  String?
   currentMedications String?
   currentPassword    String?
   age                Int?
-  role               Role
+  role               String
   appointments       Appointment[]
   prescriptions      Prescription[]
 }
@@ -47,33 +47,33 @@ model Doctor {
   specialization String?
   email          String         @unique
   password       String
-  role           Role
+  role           String
   description    String?
   appointments   Appointment[]
   prescriptions  Prescription[]
 }
 
 model Medical {
-  id        String   @id @default(uuid())
-  createdAt DateTime @default(now())
-  shopName  String
-  email     String   @unique
-  password  String
+  id          String   @id @default(uuid())
+  createdAt   DateTime @default(now())
+  shopName    String
+  email       String   @unique
+  password    String
   phoneNumber String?
-  address   String
-  role      Role
+  address     String
+  role        String
 }
 
 model Appointment {
-  id              String          @id @default(uuid())
+  id              String   @id @default(uuid())
   date            DateTime
   reason          String?
-  appointmentType AppointmentType
-  status          String          @default("Scheduled")
+  appointmentType String
+  status          String   @default("Scheduled")
   patientId       String
   doctorId        String
-  doctor          Doctor          @relation(fields: [doctorId], references: [id])
-  patient         Patient         @relation(fields: [patientId], references: [id])
+  patient         Patient  @relation(fields: [patientId], references: [id])
+  doctor          Doctor   @relation(fields: [doctorId], references: [id])
 }
 
 model Prescription {
@@ -87,29 +87,6 @@ model Prescription {
   endDate        DateTime
   patientId      String
   doctorId       String
-  doctor         Doctor   @relation(fields: [doctorId], references: [id])
   patient        Patient  @relation(fields: [patientId], references: [id])
-}
-
-enum BloodType {
-  A_POS
-  A_NEG
-  B_POS
-  B_NEG
-  AB_POS
-  AB_NEG
-  O_POS
-  O_NEG
-}
-
-enum Role {
-  PATIENT
-  DOCTOR
-  MEDICAL
-}
-
-enum AppointmentType {
-  NEW_PATIENT
-  FOLLOW_UP
-  CHECK_UP
+  doctor         Doctor   @relation(fields: [doctorId], references: [id])
 }
