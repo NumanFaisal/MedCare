@@ -49,10 +49,11 @@ function UserSignin() {
                 role: form.role
             });
 
-            if (res.data?.error) {
-                setError(res.data.error);
-                toast.error(res.data.error);
-                toast("please check your details and try again.", {
+            if (!res.data?.success) {
+                const errorMsg = res.data?.error || res.data?.message || "Signup failed";
+                setError(errorMsg);
+                toast.error(errorMsg);
+                toast("Please check your details and try again.", {
                     description: "Ensure all fields are filled correctly."
                 })
                 return;
@@ -63,8 +64,10 @@ function UserSignin() {
             });
             router.push('/dashboard/user');
         } catch (err: any) {
-            setError(err.response?.data?.error || "Something went wrong. Please try again.");
-            toast.error(err.response?.data?.error || "Something went wrong. Please try again.");
+            console.error("Signup error:", err);
+            const errorMsg = err.response?.data?.error || err.response?.data?.message || err.message || "Something went wrong. Please try again.";
+            setError(errorMsg);
+            toast.error(errorMsg);
         }
     };
 
