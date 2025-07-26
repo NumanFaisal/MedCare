@@ -6,7 +6,7 @@ import { Checkbox } from "@/components/ui/checkbox";
 import { Input } from "@/components/ui/input";
 import { Label } from "@/components/ui/label";
 import { useRouter } from "next/navigation";
-import { toast } from "sonner";
+import { toast, Toaster } from "sonner";
 import { signIn } from "next-auth/react";
 import { useState } from "react";
 
@@ -25,12 +25,15 @@ function UserSignin() {
             email,
             password,
             role, // Pass role to NextAuth
+            callbackUrl: '/dashboard/patient',
             redirect: false,
         });
 
         if (res?.error) {
             setError(res.error);
-            toast.error("Login failed: " + res.error);
+            toast("Please check your credentials and try again.", {
+                description: "Ensure your email and password are correct.",
+            });
             return;
         }
 
@@ -47,6 +50,7 @@ function UserSignin() {
             accountType="patient"
             isSignIn
         >
+            <Toaster />
             <form onSubmit={handleSubmit} className="space-y-4">
                 <div className="space-y-2">
                     <Label htmlFor="email">Email</Label>

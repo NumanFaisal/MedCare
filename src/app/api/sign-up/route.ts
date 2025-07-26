@@ -1,7 +1,7 @@
 // import { PrismaClient, Role } from "@prisma/client";
 import bcrypt from "bcryptjs";
 import { signupSchema } from "@/app/schemas/signupSchema"
-import { prisma, Role } from "@/lib/prisma";
+import { prisma } from "@/lib/prisma";
 
 
 
@@ -26,33 +26,35 @@ export async function POST(request: Request) {
         let newUser;
 
         if (data.role === "PATIENT") {
-            newUser = await prisma.user.create({
+            newUser = await prisma.patient.create({
                 data: {
-                    name: data.firstName + ' ' + data.lastName,
+                    firstName: data.firstName,
+                    lastName: data.lastName,
                     email: data.email,
                     password: hashedPassword,
-                    role: Role.PATIENT,
+                    role: data.role === "PATIENT" ? "PATIENT" : "DOCTOR", // Ensure role is set correctly
                     patientId,
                 },
             });
         } else if (data.role === "DOCTOR") {
             newUser = await prisma.doctor.create({
                 data: {
-                    name: data.firstName + ' ' + data.lastName,
+                    firstName: data.firstName,
+                    lastName: data.lastName,
                     email: data.email,
                     password: hashedPassword,
-                    role: Role.DOCTOR,
+                    role: data.role === "DOCTOR" ? "DOCTOR" : "MEDICAL", // Ensure role is set correctly
                     specialization: data.specialization || '',
-                    lincenseNumber: data.licenseNumber || '',
+                    licenseNumber: data.licenseNumber || '',
                 },
             });
         } else if (data.role === 'MEDICAL') {
             newUser = await prisma.medical.create({
                 data: {
-                    name: data.firstName + ' ' + data.lastName,
+                    shopName: data.shopName,
                     email: data.email,
                     password: hashedPassword,
-                    role: Role.MEDICAL,
+                    role: data.role === "MEDICAL" ? "MEDICAL" : "PATIENT", // Ensure role is set correctly
                     address: data.licenseNumber || '',
                     phoneNumber: data.phoneNumber || '',
                 },

@@ -6,7 +6,7 @@ import { Checkbox } from "@/components/ui/checkbox";
 import { Input } from "@/components/ui/input";
 import { Label } from "@/components/ui/label";
 import { useRouter } from "next/navigation";
-import { toast } from "sonner";
+import { toast, Toaster } from "sonner";
 import { useState } from "react";
 import axios from "axios";
 
@@ -52,6 +52,9 @@ function UserSignin() {
             if (res.data?.error) {
                 setError(res.data.error);
                 toast.error(res.data.error);
+                toast("please check your details and try again.", {
+                    description: "Ensure all fields are filled correctly."
+                })
                 return;
             }
 
@@ -72,6 +75,7 @@ function UserSignin() {
             accountType="patient"
             isSignIn={false}
         >
+            <Toaster />
             <form onSubmit={handleSubmit} className="space-y-4">
                 <div className="grid grid-cols-2 gap-4">
                     <div className="space-y-2">

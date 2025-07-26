@@ -56,10 +56,10 @@ model Doctor {
 model Medical {
   id        String   @id @default(uuid())
   createdAt DateTime @default(now())
-  firstName String
-  lastName  String
+  shopName  String
   email     String   @unique
   password  String
+  phoneNumber String?
   address   String
   role      Role
 }
