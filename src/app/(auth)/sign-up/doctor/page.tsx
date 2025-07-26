@@ -67,8 +67,10 @@ function DoctorSignin() {
             });
             router.push('/dashboard/doctor');
         } catch (err: any) {
-            setError(err.response?.data?.error || "Something went wrong. Please try again.");
-            toast.error(err.response?.data?.error || "Something went wrong. Please try again.");
+            console.error("Signup error:", err);
+            const errorMsg = err.response?.data?.error || err.response?.data?.message || err.message || "Something went wrong. Please try again.";
+            setError(errorMsg);
+            toast.error(errorMsg);
         }
     };
 

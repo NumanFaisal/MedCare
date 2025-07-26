@@ -16,22 +16,22 @@ model patient {
   email              String         @unique
   password           String
   patientId          String         @unique
-  dateOfBirth        DateTime
-  city               String
-  state              String
-  pinCode            Int
-  contactName        String
-  contactNumber      String
-  phoneNumber        String
-  streetAddress      String
-  bloodType          bloodType
-  allergies          String
-  medicalConditions  String
-  currentMedications String
-  currentPassword    String
-  age                Int
+  dateOfBirth        DateTime?
+  city               String?
+  state              String?
+  pinCode            Int?
+  contactName        String?
+  contactNumber      String?
+  phoneNumber        String?
+  streetAddress      String?
+  bloodType          BloodType?
+  allergies          String?
+  medicalConditions  String?
+  currentMedications String?
+  currentPassword    String?
+  age                Int?
   role               Role
-  appointments       appointment[]
+  appointments       Appointment[]
   prescriptions      prescription[]
 }
 
@@ -46,30 +46,27 @@ model doctor {
   email          String         @unique
   password       String
   role           Role
-  qualifications String   
-  experiences    String   
-  description    String
-  appointments   appointment[]
+  description    String?
+  appointments   Appointment[]
   prescriptions  prescription[]
 }
 
-model medical {
-  id             String   @id @default(uuid())
-  shopName       String 
-  email          String   @unique
-  password       String
-  licenseNumber  String   @unique 
-  phoneNumber    String?
-  createdAt      DateTime @default(now())
-  address        String
-  role           Role
+model Medical {
+  id        String   @id @default(uuid())
+  createdAt DateTime @default(now())
+  shopName  String
+  email     String   @unique
+  password  String
+  phoneNumber String?
+  address   String
+  role      Role
 }
 
-model appointment {
+model Appointment {
   id              String          @id @default(uuid())
   date            DateTime
   reason          String?
-  appointmentType appointmentType
+  appointmentType AppointmentType
   status          String          @default("Scheduled")
   patientId       String
   doctorId        String
@@ -92,7 +89,7 @@ model prescription {
   patient        patient  @relation(fields: [patientId], references: [id])
 }
 
-enum bloodType {
+enum BloodType {
   A_POS
   A_NEG
   B_POS
@@ -109,7 +106,7 @@ enum Role {
   MEDICAL
 }
 
-enum appointmentType {
+enum AppointmentType {
   NEW_PATIENT
   FOLLOW_UP
   CHECK_UP

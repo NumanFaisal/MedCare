@@ -8,7 +8,7 @@ import { Label } from "@/components/ui/label";
 import { useRouter } from "next/navigation";
 import { toast, Toaster } from "sonner";
 import { useState } from "react";
-import axios, { AxiosError } from "axios";
+import axios from "axios";
 
 // A type for storing form errors, mapping field names to error messages.
 type FormErrors = {
@@ -75,54 +75,25 @@ function UserSignin() {
                 lastName: form.lastName,
                 email: form.email,
                 password: form.password,
-                role: "PATIENT",
+                role: form.role
             });
 
-            // const res = await axios.post("/api/sign-up", payload);
-
-            if (res.data.success) {
-                toast.success("Account created!", {
-                    description: "Welcome to MedCare. Redirecting you now...",
-                });
-                router.push('/dashboard/user');
-            } 
-            // This 'else' block is technically not needed if the backend always throws an error on failure,
-            // but it's good practice for handling structured non-error responses.
-            else {
-                    setErrors({ general: res.data.message || "An unknown error occurred." });
-                    toast.error(res.data.message || "An unknown error occurred.");
+            if (res.data?.error) {
+                toast.error(res.data.error);
+                toast("please check your details and try again.", {
+                    description: "Ensure all fields are filled correctly."
+                })
+                return;
             }
 
-        } catch (err) {
-            const error = err as AxiosError<{ message: string; errors: FormErrors }>;
-            const errorData = error.response?.data;
-
-            if (errorData) {
-                // Handle structured validation errors from the backend
-                if (errorData.errors) {
-                    setErrors(errorData.errors);
-                    toast.error(errorData.message || "Please check your input.");
-                } else {
-                    // Handle general errors like "Email already in use"
-                    setErrors({ general: errorData.message });
-                    toast.error(errorData.message);
-                }
-            } else {
-                // Handle network or other unexpected errors
-                const unexpectedErrorMessage = "Something went wrong. Please try again.";
-                setErrors({ general: unexpectedErrorMessage });
-                toast.error(unexpectedErrorMessage);
-            }
-        } finally {
-            setIsLoading(false);
+            toast("Account created!", {
+                description: "Welcome to MedCare",
+            });
+            router.push('/dashboard/user');
+        } catch (err: any) {
+            setError(err.response?.data?.error || "Something went wrong. Please try again.");
+            toast.error(err.response?.data?.error || "Something went wrong. Please try again.");
         }
-    };
-    
-    // Helper to render error messages
-    const renderError = (field: keyof FormErrors) => {
-        return errors[field] && (
-            <p className="text-red-500 text-xs mt-1">{errors[field]?.[0]}</p>
-        );
     };
 
     return (
