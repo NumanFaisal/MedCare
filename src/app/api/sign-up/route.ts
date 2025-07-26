@@ -51,11 +51,11 @@ export async function POST(request: Request) {
         } else if (data.role === 'MEDICAL') {
             newUser = await prisma.medical.create({
                 data: {
-                    shopName: data.shopName,
+                    shopName: data.shopName || '',
                     email: data.email,
                     password: hashedPassword,
                     role: data.role === "MEDICAL" ? "MEDICAL" : "PATIENT", // Ensure role is set correctly
-                    address: data.licenseNumber || '',
+                    address: data.address || '',
                     phoneNumber: data.phoneNumber || '',
                 },
             });

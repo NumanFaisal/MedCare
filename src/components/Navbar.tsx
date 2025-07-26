@@ -60,7 +60,7 @@ function Navbar() {
                                     <div className="border-t py-1">
                                         <div className="px-4 py-2 text-xs text-gray-500">dont have an account?</div>
                                             <Link 
-                                                href="/sign-up" 
+                                                href="/sign-up/patient" 
                                                 className="block px-4 py-2 text-sm text-primary hover:bg-[#E5DEFF]"
                                                 onClick={() => setIsUserDropdownOpen(false)}
                                             >
@@ -122,7 +122,7 @@ function Navbar() {
                             </div>
                             <div className="mt-3 text-sm text-center">
                                 <span className="text-gray-600">New user?</span>{' '}
-                                <Link href="/signup/user" className="text-primary hover:underline">Register Now</Link>
+                                <Link href="/sign-up/patient" className="text-primary hover:underline">Register Now</Link>
                             </div>
                         </div>
                     </div>
