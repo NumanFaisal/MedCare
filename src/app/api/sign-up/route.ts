@@ -1,38 +1,56 @@
-// import { PrismaClient, Role } from "@prisma/client";
 import bcrypt from "bcryptjs";
-import { signupSchema } from "@/app/schemas/signupSchema"
+import { signupSchema, SignupSchemaType } from "@/app/schemas/signupSchema"
 import { prisma } from "@/lib/prisma";
+import { Role } from "@/generated/prisma";
 
 
 
 
 export async function POST(request: Request) {
     
-    // parse request body
+    
     const body = await request.json();
-    console.log("Received body:", body);
-
+    // console.log("Received body:", body);
+    
     try {
-        const data = signupSchema.parse(body);  // Validate body with Zod schema
+        // parse request body
+         const data: SignupSchemaType = signupSchema.parse(body); // Explicit type
 
-        // hash the password before saving it
-        const hashedPassword = await bcrypt.hash(data.password, 10);
+        // Check if user already exists
+        const existingPatient = await prisma.patient.findUnique({
+            where: { email: data.email },
+        });
+        const existingDoctor = await prisma.doctor.findUnique({
+            where: { email: data.email },
+        });
+        const existingMedical = await prisma.medical.findUnique({
+            where: { email: data.email },
+        });
 
-        // Generate a user Unique Id id not provided
-        const patientId = data.patientId || `PAT-${Math.random().toString(36).substr(2, 9)}`;
+        if (existingPatient || existingDoctor || existingMedical) {
+            return Response.json({ 
+                error: "Email already in use." 
+            }, { status: 400 });
+        }
 
+    // Hash the password
+    const hashedPassword = await bcrypt.hash(data.password, 10);
         // Create the user based on the role 
 
         let newUser;
 
         if (data.role === "PATIENT") {
+
+            // Generate unique patientId (you can customize this logic)
+            const patientId = `PAT${Date.now().toString().slice(-6)}`;
+
             newUser = await prisma.patient.create({
                 data: {
                     firstName: data.firstName,
                     lastName: data.lastName,
                     email: data.email,
                     password: hashedPassword,
-                    role: data.role === "PATIENT" ? "PATIENT" : "DOCTOR", // Ensure role is set correctly
+                    role: Role.PATIENT,
                     patientId,
                 },
             });
@@ -43,20 +61,21 @@ export async function POST(request: Request) {
                     lastName: data.lastName,
                     email: data.email,
                     password: hashedPassword,
-                    role: data.role === "DOCTOR" ? "DOCTOR" : "MEDICAL", // Ensure role is set correctly
-                    specialization: data.specialization || '',
-                    licenseNumber: data.licenseNumber || '',
+                    role: Role.DOCTOR,
+                    specialization: data.specialization,
+                    licenseNumber: data.licenseNumber, 
+
                 },
             });
-        } else if (data.role === 'MEDICAL') {
+        } else if (data.role === "MEDICAL") {
             newUser = await prisma.medical.create({
                 data: {
                     shopName: data.shopName,
                     email: data.email,
                     password: hashedPassword,
-                    role: data.role === "MEDICAL" ? "MEDICAL" : "PATIENT", // Ensure role is set correctly
-                    address: data.licenseNumber || '',
-                    phoneNumber: data.phoneNumber || '',
+                    licenseNumber: data.licenseNumber,
+                    phoneNumber: data.phoneNumber ?? null,
+                    role: Role.MEDICAL,
                 },
             });
         } else {
@@ -74,6 +93,7 @@ export async function POST(request: Request) {
         }, { status: 201 });
 
     } catch (error) {
+        console.error("Error during signup:", error);
         return Response.json({
             success: false,
             message: "An unexpected error occurred",

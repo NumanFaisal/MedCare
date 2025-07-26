@@ -50,7 +50,7 @@ function MedicalSignin() {
                 </div>
 
                 <div className="space-y-2">
-                    <Label htmlFor="licenseNumber">Email</Label>
+                    <Label htmlFor="licenseNumber">license Number</Label>
                     <Input
                         id="licenseNumber"
                         placeholder="PL123456789" 

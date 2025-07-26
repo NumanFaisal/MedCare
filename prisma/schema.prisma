@@ -8,7 +8,7 @@ datasource db {
   url      = env("DATABASE_URL")
 }
 
-model Patient {
+model patient {
   id                 String         @id @default(uuid())
   createdAt          DateTime       @default(now())
   firstName          String
@@ -24,24 +24,24 @@ model Patient {
   contactNumber      String
   phoneNumber        String
   streetAddress      String
-  bloodType          BloodType
+  bloodType          bloodType
   allergies          String
   medicalConditions  String
   currentMedications String
   currentPassword    String
   age                Int
   role               Role
-  appointments       Appointment[]
-  prescriptions      Prescription[]
+  appointments       appointment[]
+  prescriptions      prescription[]
 }
 
-model Doctor {
+model doctor {
   id             String         @id @default(uuid())
   createdAt      DateTime       @default(now())
   firstName      String
   lastName       String
   age            Int
-  licenseNumber  String
+  licenseNumber  String         @unique
   qualifications String[]       @default([])
   experiences    String[]       @default([])
   specialization String
@@ -49,34 +49,35 @@ model Doctor {
   password       String
   role           Role
   description    String
-  appointments   Appointment[]
-  prescriptions  Prescription[]
+  appointments   appointment[]
+  prescriptions  prescription[]
 }
 
-model Medical {
-  id        String   @id @default(uuid())
-  createdAt DateTime @default(now())
-  shopName  String
-  email     String   @unique
-  password  String
-  phoneNumber String?
-  address   String
-  role      Role
+model medical {
+  id             String   @id @default(uuid())
+  shopName       String 
+  email          String   @unique
+  password       String
+  licenseNumber  String   @unique 
+  phoneNumber    String?
+  createdAt      DateTime @default(now())
+  address        String
+  role           Role
 }
 
-model Appointment {
+model appointment {
   id              String          @id @default(uuid())
   date            DateTime
   reason          String?
-  appointmentType AppointmentType
+  appointmentType appointmentType
   status          String          @default("Scheduled")
   patientId       String
   doctorId        String
-  doctor          Doctor          @relation(fields: [doctorId], references: [id])
-  patient         Patient         @relation(fields: [patientId], references: [id])
+  doctor          doctor          @relation(fields: [doctorId], references: [id])
+  patient         patient         @relation(fields: [patientId], references: [id])
 }
 
-model Prescription {
+model prescription {
   id             String   @id @default(uuid())
   prescriptionId String   @unique
   createdAt      DateTime @default(now())
@@ -87,11 +88,11 @@ model Prescription {
   endDate        DateTime
   patientId      String
   doctorId       String
-  doctor         Doctor   @relation(fields: [doctorId], references: [id])
-  patient        Patient  @relation(fields: [patientId], references: [id])
+  doctor         doctor   @relation(fields: [doctorId], references: [id])
+  patient        patient  @relation(fields: [patientId], references: [id])
 }
 
-enum BloodType {
+enum bloodType {
   A_POS
   A_NEG
   B_POS
@@ -108,7 +109,7 @@ enum Role {
   MEDICAL
 }
 
-enum AppointmentType {
+enum appointmentType {
   NEW_PATIENT
   FOLLOW_UP
   CHECK_UP
