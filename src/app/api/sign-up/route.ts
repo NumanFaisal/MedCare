@@ -1,5 +1,5 @@
 import bcrypt from "bcryptjs";
-import { signupSchema, SignupSchemaType } from "@/app/schemas/signupSchema"
+import { signupSchema } from "@/app/schemas/signupSchema"
 import { prisma } from "@/lib/prisma";
 import { Role } from "@/generated/prisma";
 
@@ -14,7 +14,7 @@ export async function POST(request: Request) {
     
     try {
         // parse request body
-         const data: SignupSchemaType = signupSchema.parse(body); // Explicit type
+        const data = signupSchema.parse(body);
 
         // Check if user already exists
         const existingPatient = await prisma.patient.findUnique({

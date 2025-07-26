@@ -58,6 +58,7 @@ function UserSignin() {
         // --- Client-Side Validation ---
         if (form.password !== form.confirmPassword) {
             setErrors({ ...errors, password: ["Passwords do not match."] });
+            toast.error("Please ensure passwords match.");
             return;
         }
         if (!form.terms) {
@@ -69,15 +70,15 @@ function UserSignin() {
         setIsLoading(true);
 
         try {
-            const res = await axios.post("/api/auth/sign-up/patient", {
+            const res = await axios.post("/api/auth/sign-up", {
                 firstName: form.firstName,
                 lastName: form.lastName,
                 email: form.email,
                 password: form.password,
                 role: "PATIENT",
-            };
+            });
 
-            const res = await axios.post("/api/sign-up", payload);
+            // const res = await axios.post("/api/sign-up", payload);
 
             if (res.data.success) {
                 toast.success("Account created!", {
@@ -88,8 +89,8 @@ function UserSignin() {
             // This 'else' block is technically not needed if the backend always throws an error on failure,
             // but it's good practice for handling structured non-error responses.
             else {
-                 setErrors({ general: res.data.message || "An unknown error occurred." });
-                 toast.error(res.data.message || "An unknown error occurred.");
+                    setErrors({ general: res.data.message || "An unknown error occurred." });
+                    toast.error(res.data.message || "An unknown error occurred.");
             }
 
         } catch (err) {

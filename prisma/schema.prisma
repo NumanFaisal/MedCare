@@ -24,7 +24,7 @@ model patient {
   contactNumber      String
   phoneNumber        String
   streetAddress      String
-  bloodType          BloodType
+  bloodType          bloodType
   allergies          String
   medicalConditions  String
   currentMedications String
@@ -42,15 +42,15 @@ model doctor {
   lastName       String
   age            Int
   licenseNumber  String
-  qualifications String[]       @default([])
-  experiences    String[]       @default([])
   specialization String
   email          String         @unique
   password       String
   role           Role
+  qualifications String   
+  experiences    String   
   description    String
-  appointments   Appointment[]
-  prescriptions  Prescription[]
+  appointments   appointment[]
+  prescriptions  prescription[]
 }
 
 model medical {
