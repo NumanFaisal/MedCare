@@ -67,15 +67,15 @@ export async function POST(request: Request) {
 
                 },
             });
-        } else if (data.role === "MEDICAL") {
+        } else if (data.role === 'MEDICAL') {
             newUser = await prisma.medical.create({
                 data: {
                     shopName: data.shopName,
                     email: data.email,
                     password: hashedPassword,
-                    licenseNumber: data.licenseNumber,
-                    phoneNumber: data.phoneNumber ?? null,
-                    role: Role.MEDICAL,
+                    role: data.role === "MEDICAL" ? "MEDICAL" : "PATIENT", // Ensure role is set correctly
+                    address: data.licenseNumber || '',
+                    phoneNumber: data.phoneNumber || '',
                 },
             });
         } else {

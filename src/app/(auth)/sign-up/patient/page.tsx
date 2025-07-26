@@ -69,8 +69,7 @@ function UserSignin() {
         setIsLoading(true);
 
         try {
-            // We don't need to send confirmPassword or terms to the backend
-            const payload = {
+            const res = await axios.post("/api/auth/sign-up/patient", {
                 firstName: form.firstName,
                 lastName: form.lastName,
                 email: form.email,

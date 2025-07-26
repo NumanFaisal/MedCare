@@ -41,7 +41,7 @@ export const authOptions: NextAuthOptions = {
                     if (role === "DOCTOR") {
                         user = await prisma.doctor.findUnique({ where: { email } });
                     } else if (role === "PATIENT") {
-                        user = await prisma.user.findUnique({ where: { email } });
+                        user = await prisma.patient.findUnique({ where: { email } });
                     } else if (role === "MEDICAL") {
                         user = await prisma.medical.findUnique({ where: { email } });
                     }
