@@ -91,7 +91,6 @@ function UserSignin() {
             });
             router.push('/dashboard/user');
         } catch (err: any) {
-            setError(err.response?.data?.error || "Something went wrong. Please try again.");
             toast.error(err.response?.data?.error || "Something went wrong. Please try again.");
         }
     };
@@ -117,7 +116,6 @@ function UserSignin() {
                             onChange={handleChange}
                             disabled={isLoading}
                         />
-                        {renderError('firstName')}
                     </div>
                     <div className="space-y-1">
                         <Label htmlFor="lastName">Last Name</Label>
@@ -130,7 +128,6 @@ function UserSignin() {
                             onChange={handleChange}
                             disabled={isLoading}
                         />
-                        {renderError('lastName')}
                     </div>
                 </div>
 
@@ -146,7 +143,6 @@ function UserSignin() {
                         onChange={handleChange}
                         disabled={isLoading}
                     />
-                    {renderError('email')}
                 </div>
 
                 <div className="space-y-1">
@@ -161,7 +157,6 @@ function UserSignin() {
                         onChange={handleChange}
                         disabled={isLoading}
                     />
-                     {renderError('password')}
                 </div>
 
                 <div className="space-y-1">
