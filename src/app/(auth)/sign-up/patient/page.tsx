@@ -67,10 +67,12 @@ function UserSignin() {
             return;
         }
 
-        setIsLoading(true);
+        setTimeout(() => {
+            setIsLoading(false);
+        }, 2000)
 
         try {
-            const res = await axios.post("/api/auth/sign-up", {
+            const res = await axios.post("/api/sign-up/patient", {
                 firstName: form.firstName,
                 lastName: form.lastName,
                 email: form.email,
@@ -89,7 +91,7 @@ function UserSignin() {
             toast("Account created!", {
                 description: "Welcome to MedCare",
             });
-            router.push('/dashboard/user');
+            router.push('/dashboard/patient');
         } catch (err: any) {
             toast.error(err.response?.data?.error || "Something went wrong. Please try again.");
         }
