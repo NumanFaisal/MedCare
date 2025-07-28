@@ -12,13 +12,25 @@ import axios from "axios";
 
 function DoctorSignin() {
     const router = useRouter();
-    const [form, setForm] = useState({
+    const [form, setForm] = useState<{
+        firstName: string;
+        lastName: string;
+        email: string;
+        licenseNumber: string;
+        specialization: string;
+        password: string;
+        age: number | ""; // allow number or empty string
+        confirmPassword: string;
+        terms: boolean;
+        role: string;
+    }>({
         firstName: "",
         lastName: "",
         email: "",
         licenseNumber: "",
         specialization: "",
         password: "",
+        age: "", // initial value is empty string
         confirmPassword: "",
         terms: false,
         role: "DOCTOR",
@@ -29,7 +41,11 @@ function DoctorSignin() {
         const { id, value, type, checked } = e.target;
         setForm(prev => ({
             ...prev,
-            [id]: type === "checkbox" ? checked : value,
+            [id]: type === "checkbox"
+                ? checked
+                : id === "age"
+                    ? value === "" ? "" : Number(value)
+                    : value,
         }));
     };
 
@@ -42,11 +58,22 @@ function DoctorSignin() {
             return;
         }
 
+        // Validate age is a positive number
+        if (
+            form.age === "" ||
+            isNaN(Number(form.age)) ||
+            Number(form.age) <= 0
+        ) {
+            setError("Please enter a valid age.");
+            return;
+        }
+
         try {
-            const res = await axios.post("/api/sign-up", {
+            const res = await axios.post("/api/sign-up/doctor", {
                 firstName: form.firstName,
                 lastName: form.lastName,
                 email: form.email,
+                age: Number(form.age), // always a number here
                 password: form.password,
                 licenseNumber: form.licenseNumber,
                 specialization: form.specialization,
@@ -67,8 +94,10 @@ function DoctorSignin() {
             });
             router.push('/dashboard/doctor');
         } catch (err: any) {
-            setError(err.response?.data?.error || "Something went wrong. Please try again.");
-            toast.error(err.response?.data?.error || "Something went wrong. Please try again.");
+            console.error("Signup error:", err);
+            const errorMsg = err.response?.data?.error || err.response?.data?.message || err.message || "Something went wrong. Please try again.";
+            setError(errorMsg);
+            toast.error(errorMsg);
         }
     };
 
@@ -117,6 +146,18 @@ function DoctorSignin() {
                         required
                         className="border-none shadow-md "
                         value={form.email}
+                        onChange={handleChange}
+                    />
+                </div>
+                <div className="space-y-2">
+                    <Label htmlFor="age">Age</Label>
+                    <Input
+                        id="age" 
+                        type="number" 
+                        placeholder="22" 
+                        required
+                        className="border-none shadow-md "
+                        value={form.age}
                         onChange={handleChange}
                     />
                 </div>
