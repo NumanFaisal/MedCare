@@ -8,6 +8,3 @@ export const patientSignupSchema = z.object({
     role: z.enum(['PATIENT', 'DOCTOR', 'MEDICAL']),
     
 });
-
-// Export the inferred type
-export type PatientSignupType = z.infer<typeof patientSignupSchema>;

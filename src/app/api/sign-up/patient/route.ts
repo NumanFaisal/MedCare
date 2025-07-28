@@ -1,6 +1,6 @@
 import bcrypt from "bcryptjs";
 import { prisma } from "@/lib/prisma";
-import { Prisma, Role } from "@/generated/prisma";
+import { Prisma,Role } from "@/generated/prisma";
 import { patientSignupSchema } from "@/app/schemas/patientSignupSchema";
 
 
