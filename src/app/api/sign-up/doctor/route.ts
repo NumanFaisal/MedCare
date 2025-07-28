@@ -27,11 +27,11 @@ export async function POST(request: Request) {
                 firstName: data.firstName,
                 lastName: data.lastName,
                 email: data.email,
+                age: data.age,
                 password: hashedPassword,
                 role: data.role,
                 licenseNumber: data.licenseNumber,
                 specialization: data.specialization,
-                age: data.age,
             },
         })
 
