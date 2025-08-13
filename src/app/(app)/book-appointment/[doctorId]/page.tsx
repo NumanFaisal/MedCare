@@ -52,7 +52,7 @@ const BookAppointment = () => {
         setCurrentStep(3);
     };
 
-    const handleSubmit = (e: React.FormEvent) => {
+    const handleSubmit = async (e: React.FormEvent) => {
         e.preventDefault();
         if (!selectedDoctor) {
             toast("Error", {
@@ -60,24 +60,43 @@ const BookAppointment = () => {
             });
             return;
         }
-        const appointment = {
-            id: Date.now().toString(),
-            doctorId: selectedDoctor.id,
-            doctorName: selectedDoctor.name,
-            specialty: selectedDoctor.specialty,
-            patientName: formData.patientName,
-            date: formData.date,
-            time: formData.time,
-            reason: formData.reason,
-            status: 'upcoming'
-        };
-        const existingAppointments = JSON.parse(localStorage.getItem('userAppointments') || '[]');
-        existingAppointments.push(appointment);
-        localStorage.setItem('userAppointments', JSON.stringify(existingAppointments));
-        toast("Appointment Booked", {
-            description: `Your appointment with ${selectedDoctor.name} has been scheduled successfully.`,
-        });
-        router.push('/dashboard/user');
+
+        try {
+            const response = await fetch('/api/appointments', {
+                method: 'POST',
+                headers: {
+                    'Content-Type': 'application/json',
+                },
+                body: JSON.stringify({
+                    doctorId: selectedDoctor.id,
+                    date: formData.date,
+                    time: formData.time,
+                    reason: formData.reason,
+                    appointmentType: 'NEW_PATIENT',
+                    patientName: formData.patientName,
+                    email: formData.email,
+                    phone: formData.phone
+                }),
+            });
+
+            const data = await response.json();
+
+            if (!response.ok) {
+                throw new Error(data.error || 'Failed to book appointment');
+            }
+
+            toast("Appointment Booked", {
+                description: `Your appointment with ${selectedDoctor.name} has been scheduled successfully.`,
+            });
+
+            // Redirect to patient dashboard
+            router.push('/dashboard/patient');
+        } catch (error) {
+            console.error('Error booking appointment:', error);
+            toast("Error", {
+                description: error instanceof Error ? error.message : 'Failed to book appointment. Please try again.',
+            });
+        }
     };
 
     const renderStepIndicator = () => (

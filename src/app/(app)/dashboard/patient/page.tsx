@@ -20,11 +20,41 @@ interface Appointment {
 
 function PatientDashboard() {
     const [bookedAppointments, setBookedAppointments] = useState<Appointment[]>([]);
+    const [loading, setLoading] = useState(true);
 
-    // Load appointments from localStorage on component mount
+    // Load appointments from API on component mount
     useEffect(() => {
-        const appointments = JSON.parse(localStorage.getItem('userAppointments') || '[]');
-        setBookedAppointments(appointments);
+        const fetchAppointments = async () => {
+            try {
+                const response = await fetch('/api/appointments');
+                if (response.ok) {
+                    const data = await response.json();
+                    // Transform API data to match the component's expected format
+                    const formattedAppointments = data.appointments.map((apt: any) => ({
+                        id: apt.id,
+                        doctorName: apt.doctor.name,
+                        specialty: apt.doctor.specialization,
+                        date: new Date(apt.date).toISOString().split('T')[0], // Convert to date string
+                        time: new Date(apt.date).toLocaleTimeString('en-US', { 
+                            hour: '2-digit', 
+                            minute: '2-digit',
+                            hour12: true 
+                        }),
+                        reason: apt.reason,
+                        status: apt.status.toLowerCase()
+                    }));
+                    setBookedAppointments(formattedAppointments);
+                } else {
+                    console.error('Failed to fetch appointments');
+                }
+            } catch (error) {
+                console.error('Error fetching appointments:', error);
+            } finally {
+                setLoading(false);
+            }
+        };
+
+        fetchAppointments();
     }, []);
 
     const recentPrescriptions = [
@@ -109,7 +139,12 @@ function PatientDashboard() {
                         </div>  
                     </CardHeader>
                     <CardContent>
-                        {bookedAppointments.length > 0 ? (
+                        {loading ? (
+                            <div className="text-center py-6">
+                                <div className="animate-spin rounded-full h-8 w-8 border-b-2 border-primary mx-auto mb-3"></div>
+                                <p className="text-gray-500 text-sm">Loading appointments...</p>
+                            </div>
+                        ) : bookedAppointments.length > 0 ? (
                             <div className="space-y-4">
                                 {bookedAppointments.map(appt => (
                                     <div key={appt.id} className="flex items-center justify-between border-b pb-3 last:border-0">
@@ -125,8 +160,14 @@ function PatientDashboard() {
                                             )}
                                         </div>
                                         <div className="flex flex-col items-end">
-                                            <div className={`px-2 py-1 rounded-full text-xs font-medium mb-2 ${appt.status === 'upcoming' ? 'bg-blue-100 text-blue-800' : 'bg-gray-100 text-gray-800'}`}>
-                                                {appt.status}
+                                            <div className={`px-2 py-1 rounded-full text-xs font-medium mb-2 ${
+                                                appt.status === 'scheduled' || appt.status === 'upcoming' 
+                                                    ? 'bg-blue-100 text-blue-800' 
+                                                    : appt.status === 'completed' 
+                                                    ? 'bg-green-100 text-green-800'
+                                                    : 'bg-gray-100 text-gray-800'
+                                            }`}>
+                                                {appt.status.charAt(0).toUpperCase() + appt.status.slice(1)}
                                             </div>
                                             <Button size="sm" variant="outline" className="text-xs">
                                                 Details
